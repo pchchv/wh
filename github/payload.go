@@ -29,6 +29,50 @@ type Parent struct {
 	Sha string `json:"sha"`
 }
 
+// Assignee contains GitHub's assignee information.
+type Assignee struct {
+	ID                int64  `json:"id"`
+	URL               string `json:"url"`
+	Type              string `json:"type"`
+	Login             string `json:"login"`
+	NodeID            string `json:"node_id"`
+	HTMLURL           string `json:"html_url"`
+	GistsURL          string `json:"gists_url"`
+	ReposURL          string `json:"repos_url"`
+	AvatarURL         string `json:"avatar_url"`
+	EventsURL         string `json:"events_url"`
+	StarredURL        string `json:"starred_url"`
+	GravatarID        string `json:"gravatar_id"`
+	FollowingURL      string `json:"following_url"`
+	FollowersURL      string `json:"followers_url"`
+	SubscriptionsURL  string `json:"subscriptions_url"`
+	OrganizationsURL  string `json:"organizations_url"`
+	ReceivedEventsURL string `json:"received_events_url"`
+	SiteAdmin         bool   `json:"site_admin"`
+}
+
+// MergedBy contains GitHub's merged-by information.
+type MergedBy struct {
+	ID                int64  `json:"id"`
+	URL               string `json:"url"`
+	Type              string `json:"type"`
+	Login             string `json:"login"`
+	NodeID            string `json:"node_id"`
+	HTMLURL           string `json:"html_url"`
+	ReposURL          string `json:"repos_url"`
+	GistsURL          string `json:"gists_url"`
+	AvatarURL         string `json:"avatar_url"`
+	EventsURL         string `json:"events_url"`
+	StarredURL        string `json:"starred_url"`
+	GravatarID        string `json:"gravatar_id"`
+	FollowersURL      string `json:"followers_url"`
+	FollowingURL      string `json:"following_url"`
+	SubscriptionsURL  string `json:"subscriptions_url"`
+	OrganizationsURL  string `json:"organizations_url"`
+	ReceivedEventsURL string `json:"received_events_url"`
+	SiteAdmin         bool   `json:"site_admin"`
+}
+
 // MembershipPayload contains the information for GitHub's membership hook event.
 type MembershipPayload struct {
 	Scope  string `json:"scope"`
