@@ -1,5 +1,7 @@
 package github
 
+import "time"
+
 // Team contains GitHub's Team information.
 type Team struct {
 	ID              int64  `json:"id"`
@@ -73,7 +75,17 @@ type MergedBy struct {
 	SiteAdmin         bool   `json:"site_admin"`
 }
 
-// GitHubAppAuthorizationPayload contains revoke action payload
+// Step contains workflow_job step information
+type Step struct {
+	ID          int64     `json:"id"`
+	Name        string    `json:"name"`
+	Status      string    `json:"status"`
+	Conclusion  string    `json:"conclusion"`
+	StartedAt   time.Time `json:"started_at"`
+	CompletedAt time.Time `json:"completed_at"`
+}
+
+// GitHubAppAuthorizationPayload contains revoke action payload.
 type GitHubAppAuthorizationPayload struct {
 	Action string `json:"action"`
 	Sender struct {
