@@ -73,6 +73,31 @@ type MergedBy struct {
 	SiteAdmin         bool   `json:"site_admin"`
 }
 
+// GitHubAppAuthorizationPayload contains revoke action payload
+type GitHubAppAuthorizationPayload struct {
+	Action string `json:"action"`
+	Sender struct {
+		ID                int64  `json:"id"`
+		URL               string `json:"url"`
+		Type              string `json:"type"`
+		Login             string `json:"login"`
+		NodeID            string `json:"node_id"`
+		HTMLURL           string `json:"html_url"`
+		ReposURL          string `json:"repos_url"`
+		GistsURL          string `json:"gists_url"`
+		AvatarURL         string `json:"avatar_url"`
+		EventsURL         string `json:"events_url"`
+		StarredURL        string `json:"starred_url"`
+		GravatarID        string `json:"gravatar_id"`
+		FollowersURL      string `json:"followers_url"`
+		FollowingURL      string `json:"following_url"`
+		SubscriptionsURL  string `json:"subscriptions_url"`
+		OrganizationsURL  string `json:"orranizations_url"`
+		ReceivedEventsURL string `json:"received_events_url"`
+		SiteAdmin         bool   `json:"site_admin"`
+	} `json:"sender"`
+}
+
 // MembershipPayload contains the information for GitHub's membership hook event.
 type MembershipPayload struct {
 	Scope  string `json:"scope"`
@@ -295,4 +320,44 @@ type RepositoryVulnerabilityAlertPayload struct {
 			SiteAdmin         bool   `json:"site_admin"`
 		} `json:"dismisser"`
 	} `json:"alert"`
+}
+
+// TeamPayload contains the information for GitHub's team hook event.
+type TeamPayload struct {
+	Team         *Team  `json:"team"`
+	Action       string `json:"action"`
+	Organization struct {
+		Login            string `json:"login"`
+		ID               int64  `json:"id"`
+		NodeID           string `json:"node_id"`
+		URL              string `json:"url"`
+		ReposURL         string `json:"repos_url"`
+		EventsURL        string `json:"events_url"`
+		HooksURL         string `json:"hooks_url"`
+		IssuesURL        string `json:"issues_url"`
+		MembersURL       string `json:"members_url"`
+		PublicMembersURL string `json:"public_members_url"`
+		AvatarURL        string `json:"avatar_url"`
+		Description      string `json:"description"`
+	} `json:"organization"`
+	Sender struct {
+		Login             string `json:"login"`
+		ID                int64  `json:"id"`
+		NodeID            string `json:"node_id"`
+		AvatarURL         string `json:"avatar_url"`
+		GravatarID        string `json:"gravatar_id"`
+		URL               string `json:"url"`
+		HTMLURL           string `json:"html_url"`
+		FollowersURL      string `json:"followers_url"`
+		FollowingURL      string `json:"following_url"`
+		GistsURL          string `json:"gists_url"`
+		StarredURL        string `json:"starred_url"`
+		SubscriptionsURL  string `json:"subscriptions_url"`
+		OrganizationsURL  string `json:"organizations_url"`
+		ReposURL          string `json:"repos_url"`
+		EventsURL         string `json:"events_url"`
+		ReceivedEventsURL string `json:"received_events_url"`
+		Type              string `json:"type"`
+		SiteAdmin         bool   `json:"site_admin"`
+	} `json:"sender"`
 }
