@@ -12,3 +12,19 @@ type Team struct {
 	RepositoriesURL string `json:"repositories_url"`
 	Parent          *Team  `json:"parent,omitempty"`
 }
+
+// Label contains Issue's Label information.
+type Label struct {
+	ID      int64  `json:"id"`
+	Name    string `json:"name"`
+	URL     string `json:"url"`
+	Color   string `json:"color"`
+	NodeID  string `json:"node_id"`
+	Default bool   `json:"default"`
+}
+
+// Parent contains GitHub's parent information.
+type Parent struct {
+	URL string `json:"url"`
+	Sha string `json:"sha"`
+}
