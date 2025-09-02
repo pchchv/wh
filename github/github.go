@@ -62,3 +62,8 @@ type Event string
 
 // EventSubtype defines a GitHub Hook Event subtype.
 type EventSubtype string
+
+// Webhook instance contains all methods needed to process events.
+type Webhook struct {
+	secret string
+}
