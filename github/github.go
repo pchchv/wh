@@ -67,3 +67,6 @@ type EventSubtype string
 type Webhook struct {
 	secret string
 }
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
