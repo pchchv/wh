@@ -74,5 +74,13 @@ type Webhook struct {
 // WebhookOptions is a namespace for configuration option methods.
 type WebhookOptions struct{}
 
+// Secret registers the GitHub secret.
+func (WebhookOptions) Secret(secret string) Option {
+	return func(hook *Webhook) error {
+		hook.secret = secret
+		return nil
+	}
+}
+
 // Option is a configuration option for the webhook.
 type Option func(*Webhook) error
