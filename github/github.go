@@ -57,6 +57,9 @@ const (
 	BranchSubtype EventSubtype = "branch"
 )
 
+// Options is a namespace var for configuration options.
+var Options = WebhookOptions{}
+
 // Event defines a GitHub hook event type.
 type Event string
 
@@ -70,3 +73,6 @@ type Webhook struct {
 
 // WebhookOptions is a namespace for configuration option methods.
 type WebhookOptions struct{}
+
+// Option is a configuration option for the webhook.
+type Option func(*Webhook) error
