@@ -1,5 +1,7 @@
 package github
 
+import "errors"
+
 const (
 	// GitHub hook types.
 	ForkEvent                                Event = "fork"
@@ -69,6 +71,17 @@ type EventSubtype string
 // Webhook instance contains all methods needed to process events.
 type Webhook struct {
 	secret string
+}
+
+// New creates and returns a WebHook instance denoted by the Provider type.
+func New(options ...Option) (*Webhook, error) {
+	hook := new(Webhook)
+	for _, opt := range options {
+		if err := opt(hook); err != nil {
+			return nil, errors.New("Error applying Option")
+		}
+	}
+	return hook, nil
 }
 
 // WebhookOptions is a namespace for configuration option methods.
