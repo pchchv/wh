@@ -1,7 +1,7 @@
 package github
 
-// GitHub hook types.
 const (
+	// GitHub hook types.
 	ForkEvent                                Event = "fork"
 	MetaEvent                                Event = "meta"
 	TeamEvent                                Event = "team"
@@ -49,8 +49,13 @@ const (
 	InstallationRepositoriesEvent            Event = "installation_repositories"
 	RepositoryVulnerabilityAlertEvent        Event = "repository_vulnerability_alert"
 	IntegrationInstallationRepositoriesEvent Event = "integration_installation_repositories"
+	// GitHub hook event subtypes.
+	NoSubtype     EventSubtype = ""
+	TagSubtype    EventSubtype = "tag"
+	PullSubtype   EventSubtype = "pull"
+	IssueSubtype  EventSubtype = "issues"
+	BranchSubtype EventSubtype = "branch"
 )
-
 
 // Event defines a GitHub hook event type.
 type Event string
