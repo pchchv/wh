@@ -54,3 +54,6 @@ const (
 
 // Event defines a GitHub hook event type.
 type Event string
+
+// EventSubtype defines a GitHub Hook Event subtype.
+type EventSubtype string
