@@ -6758,3 +6758,35 @@ type GollumPayload struct {
 		SiteAdmin         bool   `json:"site_admin"`
 	} `json:"sender"`
 }
+
+// SecurityAdvisoryPayload contains the information for GitHub's security_advisory hook event.
+type SecurityAdvisoryPayload struct {
+	Action           string `json:"action"`
+	SecurityAdvisory struct {
+		GHSAID      string `json:"ghsa_id"`
+		Summary     string `json:"summary"`
+		Description string `json:"description"`
+		Severity    string `json:"string"`
+		Identifiers []struct {
+			Value string `json:"value"`
+			Type  string `json:"type"`
+		} `json:"identifiers"`
+		References []struct {
+			URL string `json:"url"`
+		} `json:"references"`
+		PublishedAt     time.Time  `json:"published_at"`
+		UpdatedAt       time.Time  `json:"updated_at"`
+		WithdrawnAt     *time.Time `json:"withdrawn_at"`
+		Vulnerabilities []struct {
+			Package struct {
+				Ecosystem string `json:"ecosystem"`
+				Name      string `json:"name"`
+			}
+			Severity               string `json:"severity"`
+			VulnerableVersionRange string `json:"vulnerable_version_range"`
+			FirstPatchedVersion    *struct {
+				Identifier string `json:"identifier"`
+			} `json:"first_patched_version"`
+		} `json:"vulnerabilities"`
+	} `json:"security_advisory"`
+}
