@@ -68,6 +68,9 @@ type Event string
 // EventSubtype defines a GitHub Hook Event subtype.
 type EventSubtype string
 
+// Option is a configuration option for the webhook.
+type Option func(*Webhook) error
+
 // Webhook instance contains all methods needed to process events.
 type Webhook struct {
 	secret string
@@ -94,6 +97,3 @@ func (WebhookOptions) Secret(secret string) Option {
 		return nil
 	}
 }
-
-// Option is a configuration option for the webhook.
-type Option func(*Webhook) error
