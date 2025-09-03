@@ -5,6 +5,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
+	"io"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -502,6 +503,80 @@ func TestWebhooks(t *testing.T) {
 			assert.Equal(http.StatusOK, resp.StatusCode)
 			assert.NoError(parseError)
 			assert.Equal(reflect.TypeOf(tc.typ), reflect.TypeOf(results))
+		})
+	}
+}
+
+func TestBadRequests(t *testing.T) {
+	assert := require.New(t)
+	tests := []struct {
+		name    string
+		event   Event
+		payload io.Reader
+		headers http.Header
+	}{
+		{
+			name:    "BadNoEventHeader",
+			event:   CreateEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{},
+		},
+		{
+			name:    "UnsubscribedEvent",
+			event:   CreateEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Github-Event": []string{"noneexistant_event"},
+			},
+		},
+		{
+			name:    "BadBody",
+			event:   CommitCommentEvent,
+			payload: bytes.NewBuffer([]byte("")),
+			headers: http.Header{
+				"X-Github-Event":      []string{"commit_comment"},
+				"X-Hub-Signature-256": []string{"sha256=156404ad5f721c53151147f3d3d302329f95a3ab"},
+			},
+		},
+		{
+			name:    "BadSignatureLength",
+			event:   CommitCommentEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Github-Event":      []string{"commit_comment"},
+				"X-Hub-Signature-256": []string{""},
+			},
+		},
+		{
+			name:    "BadSignatureMatch",
+			event:   CommitCommentEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Github-Event":      []string{"commit_comment"},
+				"X-Hub-Signature-256": []string{"111"},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		tc := tt
+		client := &http.Client{}
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			var parseError error
+			server := newServer(func(w http.ResponseWriter, r *http.Request) {
+				_, parseError = hook.Parse(r, tc.event)
+			})
+			defer server.Close()
+			req, err := http.NewRequest(http.MethodPost, server.URL+path, tc.payload)
+			assert.NoError(err)
+			req.Header = tc.headers
+			req.Header.Set("Content-Type", "application/json")
+
+			resp, err := client.Do(req)
+			assert.NoError(err)
+			assert.Equal(http.StatusOK, resp.StatusCode)
+			assert.Error(parseError)
 		})
 	}
 }
