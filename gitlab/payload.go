@@ -52,3 +52,11 @@ type Link struct {
 	Name     string `json:"name"`
 	URL      string `json:"url"`
 }
+
+// Runner represents a runner agent.
+type Runner struct {
+	ID          int64  `json:"id"`
+	Description string `json:"description"`
+	Active      bool   `json:"active"`
+	IsShared    bool   `json:"is_shared"`
+}
