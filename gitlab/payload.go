@@ -89,3 +89,12 @@ type Project struct {
 	CiConfigPath      string `json:"ci_config_path"`
 	PathWithNamespace string `json:"path_with_namespace"`
 }
+
+// Wiki contains all of the GitLab wiki information.
+type Wiki struct {
+	WebURL            string `json:"web_url"`
+	GitSSHURL         string `json:"git_ssh_url"`
+	GitHTTPURL        string `json:"git_http_url"`
+	DefaultBranch     string `json:"default_branch"`
+	PathWithNamespace string `json:"path_with_namespace"`
+}
