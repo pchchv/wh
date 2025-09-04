@@ -126,3 +126,9 @@ type ArtifactsFile struct {
 	Size     string `json:"size"`
 	Filename string `json:"filename"`
 }
+
+// Variable contains pipeline variables.
+type Variable struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
