@@ -156,3 +156,12 @@ type DraftChanges struct {
 	Current  bool `json:"current"`
 	Previous bool `json:"previous"`
 }
+
+// Assignee contains all of the GitLab assignee information.
+type Assignee struct {
+	ID        int64  `json:"id"`
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	Username  string `json:"username"`
+	AvatarURL string `json:"avatar_url"`
+}
