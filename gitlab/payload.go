@@ -120,3 +120,9 @@ type Position struct {
 	X            int64  `json:"x"`
 	Y            int64  `json:"y"`
 }
+
+// ArtifactsFile contains all of the GitLab artifact information.
+type ArtifactsFile struct {
+	Size     string `json:"size"`
+	Filename string `json:"filename"`
+}
