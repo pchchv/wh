@@ -98,3 +98,25 @@ type Wiki struct {
 	DefaultBranch     string `json:"default_branch"`
 	PathWithNamespace string `json:"path_with_namespace"`
 }
+
+// Position defines a specific location,
+// identified by paths line numbers and image coordinates,
+// within a specific diff, identified by start,
+// head and base commit ids.
+//
+// Text position will have: new_line and old_line.
+// Image position will have: width, height, x, y.
+type Position struct {
+	BaseSHA      string `json:"base_sha"`
+	HeadSHA      string `json:"head_sha"`
+	OldPath      string `json:"old_path"`
+	NewPath      string `json:"new_path"`
+	StartSHA     string `json:"start_sha"`
+	PositionType string `json:"position_type"`
+	OldLine      int64  `json:"old_line"`
+	NewLine      int64  `json:"new_line"`
+	Height       int64  `json:"height"`
+	Width        int64  `json:"width"`
+	X            int64  `json:"x"`
+	Y            int64  `json:"y"`
+}
