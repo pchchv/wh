@@ -132,3 +132,9 @@ type Variable struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
+
+// Author contains all of the GitLab author information.
+type Author struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
