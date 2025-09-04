@@ -149,3 +149,10 @@ type Repository struct {
 	Description     string `json:"description"`
 	VisibilityLevel int64  `json:"visibility_level"`
 }
+
+// DraftChanges contains the current and previous value of the draft property,
+// tells us if draft was toggles.
+type DraftChanges struct {
+	Current  bool `json:"current"`
+	Previous bool `json:"previous"`
+}
