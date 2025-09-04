@@ -69,3 +69,23 @@ type User struct {
 	AvatarURL string `json:"avatar_url"`
 	Email     string `json:"email"`
 }
+
+// Project contains all of the GitLab project information.
+type Project struct {
+	ID                int64  `json:"id"`
+	VisibilityLevel   int64  `json:"visibility_level"`
+	URL               string `json:"url"`
+	Name              string `json:"name"`
+	WebURL            string `json:"web_url"`
+	SSHURL            string `json:"ssh_url"`
+	HTTPURL           string `json:"http_url"`
+	Homepage          string `json:"homepage"`
+	Namespace         string `json:"namespace"`
+	AvatarURL         string `json:"avatar_url"`
+	GitSSHURL         string `json:"git_ssh_url"`
+	GitHTTPURL        string `json:"git_http_url"`
+	Description       string `json:"description"`
+	DefaultBranch     string `json:"default_branch"`
+	CiConfigPath      string `json:"ci_config_path"`
+	PathWithNamespace string `json:"path_with_namespace"`
+}
