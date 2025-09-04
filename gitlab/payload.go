@@ -30,3 +30,12 @@ type DeploymentEventPayload struct {
 	DeployableId   int64   `json:"deployable_id"`
 	DeploymentId   int64   `json:"deployment_id"`
 }
+
+// Link represent a generic html link.
+type Link struct {
+	ID       int    `json:"id"`
+	External bool   `json:"external"`
+	LinkType string `json:"link_type"`
+	Name     string `json:"name"`
+	URL      string `json:"url"`
+}
