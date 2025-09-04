@@ -138,3 +138,14 @@ type Author struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
+
+// Repository contains all of the GitLab repository information.
+type Repository struct {
+	URL             string `json:"url"`
+	Name            string `json:"name"`
+	Homepage        string `json:"homepage"`
+	GitSSHURL       string `json:"git_ssh_url"`
+	GitHTTPURL      string `json:"git_http_url"`
+	Description     string `json:"description"`
+	VisibilityLevel int64  `json:"visibility_level"`
+}
