@@ -60,3 +60,12 @@ type Runner struct {
 	Active      bool   `json:"active"`
 	IsShared    bool   `json:"is_shared"`
 }
+
+// User contains all of the GitLab user information.
+type User struct {
+	ID        int64  `json:"id"`
+	Name      string `json:"name"`
+	UserName  string `json:"username"`
+	AvatarURL string `json:"avatar_url"`
+	Email     string `json:"email"`
+}
