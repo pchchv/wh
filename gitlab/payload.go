@@ -1,5 +1,18 @@
 package gitlab
 
+// Assets represent artefacts and links associated to a release.
+type Assets struct {
+	Count   int           `json:"count"`
+	Links   []Link        `json:"links"`
+	Sources []AssetSource `json:"sources"`
+}
+
+// AssetSource represent the download url for an asset.
+type AssetSource struct {
+	URL    string `json:"url"`
+	Format string `json:"format"`
+}
+
 // Reviewers contains all of the GitLab reviewers information.
 type Reviewers struct {
 	ID        int    `json:"id"`
