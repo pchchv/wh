@@ -309,6 +309,43 @@ type JobEventPayload struct {
 	Repository          Repository  `json:"repository"`
 }
 
+// PushEventPayload contains the information for GitLab's push event.
+type PushEventPayload struct {
+	UserID            int64      `json:"user_id"`
+	ProjectID         int64      `json:"project_id"`
+	TotalCommitsCount int64      `json:"total_commits_count"`
+	Ref               string     `json:"ref"`
+	ObjectKind        string     `json:"object_kind"`
+	Before            string     `json:"before"`
+	After             string     `json:"after"`
+	CheckoutSHA       string     `json:"checkout_sha"`
+	UserName          string     `json:"user_name"`
+	UserUsername      string     `json:"user_username"`
+	UserEmail         string     `json:"user_email"`
+	UserAvatar        string     `json:"user_avatar"`
+	Project           Project    `json:"project"`
+	Repository        Repository `json:"repository"`
+	Commits           []Commit   `json:"commits"`
+}
+
+// TagEventPayload contains the information for GitLab's tag push event.
+type TagEventPayload struct {
+	UserID            int64      `json:"user_id"`
+	ProjectID         int64      `json:"project_id"`
+	TotalCommitsCount int64      `json:"total_commits_count"`
+	ObjectKind        string     `json:"object_kind"`
+	Before            string     `json:"before"`
+	After             string     `json:"after"`
+	Ref               string     `json:"ref"`
+	CheckoutSHA       string     `json:"checkout_sha"`
+	UserName          string     `json:"user_name"`
+	UserUsername      string     `json:"user_username"`
+	UserAvatar        string     `json:"user_avatar"`
+	Project           Project    `json:"project"`
+	Repository        Repository `json:"repository"`
+	Commits           []Commit   `json:"commits"`
+}
+
 type customTime struct {
 	time.Time
 }
