@@ -1,5 +1,7 @@
 package gitlab
 
+import "time"
+
 // Assets represent artefacts and links associated to a release.
 type Assets struct {
 	Count   int           `json:"count"`
@@ -212,4 +214,8 @@ type StDiff struct {
 	NewFile     bool   `json:"new_file"`
 	RenamedFile bool   `json:"renamed_file"`
 	DeletedFile bool   `json:"deleted_file"`
+}
+
+type customTime struct {
+	time.Time
 }
