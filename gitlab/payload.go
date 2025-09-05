@@ -346,6 +346,83 @@ type TagEventPayload struct {
 	Commits           []Commit   `json:"commits"`
 }
 
+// ProjectCreatedEventPayload contains the information about GitLab's project created event.
+type ProjectCreatedEventPayload struct {
+	ProjectID         int64      `json:"project_id"`
+	CreatedAt         customTime `json:"created_at"`
+	UpdatedAt         customTime `json:"updated_at"`
+	Name              string     `json:"name"`
+	Path              string     `json:"path"`
+	EventName         string     `json:"event_name"`
+	OwnerName         string     `json:"owner_name"`
+	OwnerEmail        string     `json:"owner_email"`
+	PathWithNamespace string     `json:"path_with_namespace"`
+	ProjectVisibility string     `json:"project_visibility"`
+	Owners            []Author   `json:"owners"`
+}
+
+// ProjectDestroyedEventPayload contains the information about GitLab's project destroyed event.
+type ProjectDestroyedEventPayload struct {
+	ProjectID         int64      `json:"project_id"`
+	CreatedAt         customTime `json:"created_at"`
+	UpdatedAt         customTime `json:"updated_at"`
+	Name              string     `json:"name"`
+	Path              string     `json:"path"`
+	EventName         string     `json:"event_name"`
+	OwnerName         string     `json:"owner_name"`
+	OwnerEmail        string     `json:"owner_email"`
+	PathWithNamespace string     `json:"path_with_namespace"`
+	ProjectVisibility string     `json:"project_visibility"`
+	Owners            []Author   `json:"owners"`
+}
+
+// ProjectRenamedEventPayload contains the information about GitLab's project renamed event.
+type ProjectRenamedEventPayload struct {
+	ProjectID            int64      `json:"project_id"`
+	CreatedAt            customTime `json:"created_at"`
+	UpdatedAt            customTime `json:"updated_at"`
+	EventName            string     `json:"event_name"`
+	Name                 string     `json:"name"`
+	Path                 string     `json:"path"`
+	OwnerName            string     `json:"owner_name"`
+	OwnerEmail           string     `json:"owner_email"`
+	ProjectVisibility    string     `json:"project_visibility"`
+	PathWithNamespace    string     `json:"path_with_namespace"`
+	OldPathWithNamespace string     `json:"old_path_with_namespace"`
+	Owners               []Author   `json:"owners"`
+}
+
+// ProjectTransferredEventPayload contains the information about GitLab's project transferred event.
+type ProjectTransferredEventPayload struct {
+	ProjectID            int64      `json:"project_id"`
+	CreatedAt            customTime `json:"created_at"`
+	UpdatedAt            customTime `json:"updated_at"`
+	Name                 string     `json:"name"`
+	Path                 string     `json:"path"`
+	EventName            string     `json:"event_name"`
+	OwnerName            string     `json:"owner_name"`
+	OwnerEmail           string     `json:"owner_email"`
+	PathWithNamespace    string     `json:"path_with_namespace"`
+	ProjectVisibility    string     `json:"project_visibility"`
+	OldPathWithNamespace string     `json:"old_path_with_namespace"`
+	Owners               []Author   `json:"owners"`
+}
+
+// ProjectUpdatedEventPayload contains the information about GitLab's project updated event.
+type ProjectUpdatedEventPayload struct {
+	ProjectID         int64      `json:"project_id"`
+	CreatedAt         customTime `json:"created_at"`
+	UpdatedAt         customTime `json:"updated_at"`
+	Name              string     `json:"name"`
+	Path              string     `json:"path"`
+	EventName         string     `json:"event_name"`
+	OwnerName         string     `json:"owner_name"`
+	OwnerEmail        string     `json:"owner_email"`
+	PathWithNamespace string     `json:"path_with_namespace"`
+	ProjectVisibility string     `json:"project_visibility"`
+	Owners            []Author   `json:"owners"`
+}
+
 type customTime struct {
 	time.Time
 }
