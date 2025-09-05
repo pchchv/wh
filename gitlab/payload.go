@@ -219,6 +219,20 @@ type StDiff struct {
 	DeletedFile bool   `json:"deleted_file"`
 }
 
+// Label contains all of the GitLab label information.
+type Label struct {
+	ID          int64      `json:"id"`
+	Title       string     `json:"title"`
+	Color       string     `json:"color"`
+	ProjectID   int64      `json:"project_id"`
+	CreatedAt   customTime `json:"created_at"`
+	UpdatedAt   customTime `json:"updated_at"`
+	Template    bool       `json:"template"`
+	Description string     `json:"description"`
+	Type        string     `json:"type"`
+	GroupID     int64      `json:"group_id"`
+}
+
 type customTime struct {
 	time.Time
 }
