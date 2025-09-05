@@ -423,6 +423,52 @@ type ProjectUpdatedEventPayload struct {
 	Owners            []Author   `json:"owners"`
 }
 
+// UserCreatedEventPayload contains the information about GitLab's user created event.
+type UserCreatedEventPayload struct {
+	UserID    int64      `json:"user_id"`
+	CreatedAt customTime `json:"created_at"`
+	UpdatedAt customTime `json:"updated_at"`
+	Name      string     `json:"name"`
+	Email     string     `json:"email"`
+	Username  string     `json:"username"`
+	EventName string     `json:"event_name"`
+}
+
+// UserRemovedEventPayload contains the information about GitLab's user removed event.
+type UserRemovedEventPayload struct {
+	UserID    int64      `json:"user_id"`
+	CreatedAt customTime `json:"created_at"`
+	UpdatedAt customTime `json:"updated_at"`
+	Name      string     `json:"name"`
+	Email     string     `json:"email"`
+	Username  string     `json:"username"`
+	EventName string     `json:"event_name"`
+}
+
+// UserFailedLoginEventPayload contains the information about GitLab's user login failed event.
+type UserFailedLoginEventPayload struct {
+	UserID    int64      `json:"user_id"`
+	CreatedAt customTime `json:"created_at"`
+	UpdatedAt customTime `json:"updated_at"`
+	Name      string     `json:"name"`
+	Email     string     `json:"email"`
+	State     string     `json:"state"`
+	Username  string     `json:"username"`
+	EventName string     `json:"event_name"`
+}
+
+// UserRenamedEventPayload contains the information about GitLab's user renamed event.
+type UserRenamedEventPayload struct {
+	UserID      int64      `json:"user_id"`
+	CreatedAt   customTime `json:"created_at"`
+	UpdatedAt   customTime `json:"updated_at"`
+	Name        string     `json:"name"`
+	Email       string     `json:"email"`
+	Username    string     `json:"username"`
+	EventName   string     `json:"event_name"`
+	OldUsername string     `json:"old_username"`
+}
+
 type customTime struct {
 	time.Time
 }
