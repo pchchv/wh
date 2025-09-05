@@ -233,6 +233,32 @@ type Label struct {
 	GroupID     int64      `json:"group_id"`
 }
 
+// Commit contains all of the GitLab commit information.
+type Commit struct {
+	ID        string     `json:"id"`
+	URL       string     `json:"url"`
+	Title     string     `json:"title"`
+	Message   string     `json:"message"`
+	Added     []string   `json:"added"`
+	Removed   []string   `json:"removed"`
+	Modified  []string   `json:"modified"`
+	Author    Author     `json:"author"`
+	Timestamp customTime `json:"timestamp"`
+}
+
+// BuildCommit contains all of the GitLab build commit information.
+type BuildCommit struct {
+	ID          int64      `json:"id"`
+	Duration    float64    `json:"duration"`
+	SHA         string     `json:"sha"`
+	Status      string     `json:"status"`
+	Message     string     `json:"message"`
+	AuthorName  string     `json:"author_name"`
+	AuthorEmail string     `json:"author_email"`
+	StartedAt   customTime `json:"started_at"`
+	FinishedAt  customTime `json:"finished_at"`
+}
+
 type customTime struct {
 	time.Time
 }
