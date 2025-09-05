@@ -508,9 +508,9 @@ type TeamMemberUpdatedEventPayload struct {
 	UserID                   int64      `json:"user_id"`
 	ProjectID                int64      `json:"project_id"`
 	CreatedAt                customTime `json:"created_at"`
+	UpdatedAt                customTime `json:"updated_at"`
 	UserName                 string     `json:"user_name"`
 	UserEmail                string     `json:"user_email"`
-	UpdatedAt                customTime `json:"updated_at"`
 	EventName                string     `json:"event_name"`
 	AccessLevel              string     `json:"access_level"`
 	ProjectName              string     `json:"project_name"`
@@ -518,6 +518,21 @@ type TeamMemberUpdatedEventPayload struct {
 	UserUsername             string     `json:"user_username"`
 	ProjectVisibility        string     `json:"project_visibility"`
 	ProjectPathWithNamespace string     `json:"project_path_with_namespace"`
+}
+
+// ReleaseEventPayload contains the information about GitLab's release event.
+type ReleaseEventPayload struct {
+	ID          int        `json:"id"`
+	CreatedAt   customTime `json:"created_at"`
+	ReleasedAt  customTime `json:"released_at"`
+	Tag         string     `json:"tag"`
+	URL         string     `json:"url"`
+	Name        string     `json:"name"`
+	Action      string     `json:"action"`
+	ObjectKind  string     `json:"object_kind"`
+	Description string     `json:"description"`
+	Assets      Assets     `json:"assets"`
+	Project     Project    `json:"project"`
 }
 
 type customTime struct {
