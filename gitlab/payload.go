@@ -613,6 +613,26 @@ type GroupMemberUpdatedEventPayload struct {
 	GroupID      int64      `json:"group_id"`
 }
 
+// KeyAddedEventPayload contains the information about GitLab's key added event.
+type KeyAddedEventPayload struct {
+	UpdatedAt customTime `json:"updated_at"`
+	EventName string     `json:"event_name"`
+	CreatedAt string     `json:"created_at"`
+	Username  string     `json:"username"`
+	Key       string     `json:"key"`
+	Id        int64      `json:"id"`
+}
+
+// KeyRemovedEventPayload contains the information about GitLab's key removed event.
+type KeyRemovedEventPayload struct {
+	UpdatedAt customTime `json:"updated_at"`
+	EventName string     `json:"event_name"`
+	CreatedAt string     `json:"created_at"`
+	Username  string     `json:"username"`
+	Key       string     `json:"key"`
+	Id        int64      `json:"id"`
+}
+
 type customTime struct {
 	time.Time
 }
