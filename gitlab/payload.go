@@ -535,6 +535,84 @@ type ReleaseEventPayload struct {
 	Project     Project    `json:"project"`
 }
 
+// GroupCreatedEventPayload contains the information about GitLab's group created event.
+type GroupCreatedEventPayload struct {
+	CreatedAt customTime `json:"created_at"`
+	UpdatedAt customTime `json:"updated_at"`
+	EventName string     `json:"event_name"`
+	Name      string     `json:"name"`
+	Path      string     `json:"path"`
+	GroupID   int64      `json:"group_id"`
+}
+
+// GroupRemovedEventPayload contains the information about GitLab's group removed event.
+type GroupRemovedEventPayload struct {
+	CreatedAt customTime `json:"created_at"`
+	UpdatedAt customTime `json:"updated_at"`
+	EventName string     `json:"event_name"`
+	Name      string     `json:"name"`
+	Path      string     `json:"path"`
+	GroupID   int64      `json:"group_id"`
+}
+
+// GroupRenamedEventPayload contains the information about GitLab's group renamed event.
+type GroupRenamedEventPayload struct {
+	CreatedAt   customTime `json:"created_at"`
+	UpdatedAt   customTime `json:"updated_at"`
+	OldFullPath string     `json:"old_full_path"`
+	EventName   string     `json:"event_name"`
+	FullPath    string     `json:"full_path"`
+	Name        string     `json:"name"`
+	Path        string     `json:"path"`
+	OldPath     string     `json:"old_path"`
+	GroupID     int64      `json:"group_id"`
+}
+
+// GroupMemberAddedEventPayload contains the information about GitLab's new group member event.
+type GroupMemberAddedEventPayload struct {
+	CreatedAt    customTime `json:"created_at"`
+	UpdatedAt    customTime `json:"updated_at"`
+	UserName     string     `json:"user_name"`
+	EventName    string     `json:"event_name"`
+	GroupName    string     `json:"group_name"`
+	GroupPath    string     `json:"group_path"`
+	UserEmail    string     `json:"user_email"`
+	GroupAccess  string     `json:"group_access"`
+	UserUsername string     `json:"user_username"`
+	GroupID      int64      `json:"group_id"`
+	UserID       int64      `json:"user_id"`
+}
+
+// GroupMemberRemovedEventPayload contains the information about GitLab's group member removed event.
+type GroupMemberRemovedEventPayload struct {
+	CreatedAt    customTime `json:"created_at"`
+	UpdatedAt    customTime `json:"updated_at"`
+	EventName    string     `json:"event_name"`
+	GroupAccess  string     `json:"group_access"`
+	GroupName    string     `json:"group_name"`
+	GroupPath    string     `json:"group_path"`
+	UserEmail    string     `json:"user_email"`
+	UserName     string     `json:"user_name"`
+	UserUsername string     `json:"user_username"`
+	UserID       int64      `json:"user_id"`
+	GroupID      int64      `json:"group_id"`
+}
+
+// GroupMemberUpdatedEventPayload contains the information about GitLab's group member updated event.
+type GroupMemberUpdatedEventPayload struct {
+	CreatedAt    customTime `json:"created_at"`
+	UpdatedAt    customTime `json:"updated_at"`
+	EventName    string     `json:"event_name"`
+	GroupAccess  string     `json:"group_access"`
+	GroupName    string     `json:"group_name"`
+	GroupPath    string     `json:"group_path"`
+	UserEmail    string     `json:"user_email"`
+	UserName     string     `json:"user_name"`
+	UserUsername string     `json:"user_username"`
+	UserID       int64      `json:"user_id"`
+	GroupID      int64      `json:"group_id"`
+}
+
 type customTime struct {
 	time.Time
 }
