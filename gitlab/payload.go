@@ -259,6 +259,56 @@ type BuildCommit struct {
 	FinishedAt  customTime `json:"finished_at"`
 }
 
+// BuildEventPayload contains the information for GitLab's build status change event.
+type BuildEventPayload struct {
+	Tag                 bool        `json:"tag"`
+	BuildAllowFailure   bool        `json:"build_allow_failure"`
+	BuildID             int64       `json:"build_id"`
+	ProjectID           int64       `json:"project_id"`
+	BuildDuration       float64     `json:"build_duration"`
+	BuildQueuedDuration float64     `json:"build_queued_duration"`
+	Ref                 string      `json:"ref"`
+	SHA                 string      `json:"sha"`
+	BuildName           string      `json:"build_name"`
+	BeforeSHA           string      `json:"before_sha"`
+	ObjectKind          string      `json:"object_kind"`
+	BuildStage          string      `json:"build_stage"`
+	BuildStatus         string      `json:"build_status"`
+	ProjectName         string      `json:"project_name"`
+	User                User        `json:"user"`
+	Runner              Runner      `json:"runner"`
+	Commit              BuildCommit `json:"commit"`
+	BuildStartedAt      customTime  `json:"build_started_at"`
+	BuildFinishedAt     customTime  `json:"build_finished_at"`
+	Repository          Repository  `json:"repository"`
+}
+
+// JobEventPayload contains the information for GitLab's Job status change.
+type JobEventPayload struct {
+	Tag                 bool        `json:"tag"`
+	BuildAllowFailure   bool        `json:"build_allow_failure"`
+	BuildID             int64       `json:"build_id"`
+	ProjectID           int64       `json:"project_id"`
+	PipelineID          int64       `json:"pipeline_id"`
+	BuildDuration       float64     `json:"build_duration"`
+	BuildQueuedDuration float64     `json:"build_queued_duration"`
+	Ref                 string      `json:"ref"`
+	SHA                 string      `json:"sha"`
+	BuildName           string      `json:"build_name"`
+	BeforeSHA           string      `json:"before_sha"`
+	ObjectKind          string      `json:"object_kind"`
+	BuildStage          string      `json:"build_stage"`
+	ProjectName         string      `json:"project_name"`
+	BuildStatus         string      `json:"build_status"`
+	BuildFailureReason  string      `json:"build_failure_reason"`
+	User                User        `json:"user"`
+	Runner              Runner      `json:"runner"`
+	BuildStartedAt      customTime  `json:"build_started_at"`
+	BuildFinishedAt     customTime  `json:"build_finished_at"`
+	Commit              BuildCommit `json:"commit"`
+	Repository          Repository  `json:"repository"`
+}
+
 type customTime struct {
 	time.Time
 }
