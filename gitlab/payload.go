@@ -165,3 +165,21 @@ type Assignee struct {
 	Username  string `json:"username"`
 	AvatarURL string `json:"avatar_url"`
 }
+
+// Source contains all of the GitLab source information.
+type Source struct {
+	URL               string `json:"url"`
+	Name              string `json:"name"`
+	WebURL            string `json:"web_url"`
+	AvatarURL         string `json:"avatar_url"`
+	GitSSHURL         string `json:"git_ssh_url"`
+	GitHTTPURL        string `json:"git_http_url"`
+	Namespace         string `json:"namespace"`
+	Homepage          string `json:"homepage"`
+	SSHURL            string `json:"ssh_url"`
+	HTTPURL           string `json:"http_url"`
+	Description       string `json:"description"`
+	DefaultBranch     string `json:"default_branch"`
+	PathWithNamespace string `json:"path_with_namespace"`
+	VisibilityLevel   int64  `json:"visibility_level"`
+}
