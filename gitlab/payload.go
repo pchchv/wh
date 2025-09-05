@@ -469,6 +469,57 @@ type UserRenamedEventPayload struct {
 	OldUsername string     `json:"old_username"`
 }
 
+// TeamMemberAddedEventPayload contains the information about GitLab's new team member event.
+type TeamMemberAddedEventPayload struct {
+	UserID                   int64      `json:"user_id"`
+	ProjectID                int64      `json:"project_id"`
+	CreatedAt                customTime `json:"created_at"`
+	UpdatedAt                customTime `json:"updated_at"`
+	UserName                 string     `json:"user_name"`
+	UserEmail                string     `json:"user_email"`
+	EventName                string     `json:"event_name"`
+	AccessLevel              string     `json:"access_level"`
+	ProjectName              string     `json:"project_name"`
+	ProjectPath              string     `json:"project_path"`
+	UserUsername             string     `json:"user_username"`
+	ProjectVisibility        string     `json:"project_visibility"`
+	ProjectPathWithNamespace string     `json:"project_path_with_namespace"`
+}
+
+// TeamMemberRemovedEventPayload contains the information about GitLab's team member removed event.
+type TeamMemberRemovedEventPayload struct {
+	UserID                   int64      `json:"user_id"`
+	ProjectID                int64      `json:"project_id"`
+	CreatedAt                customTime `json:"created_at"`
+	UpdatedAt                customTime `json:"updated_at"`
+	UserName                 string     `json:"user_name"`
+	UserEmail                string     `json:"user_email"`
+	EventName                string     `json:"event_name"`
+	AccessLevel              string     `json:"access_level"`
+	ProjectName              string     `json:"project_name"`
+	ProjectPath              string     `json:"project_path"`
+	UserUsername             string     `json:"user_username"`
+	ProjectVisibility        string     `json:"project_visibility"`
+	ProjectPathWithNamespace string     `json:"project_path_with_namespace"`
+}
+
+// TeamMemberUpdatedEventPayload contains the information about GitLab's team member updated event.
+type TeamMemberUpdatedEventPayload struct {
+	UserID                   int64      `json:"user_id"`
+	ProjectID                int64      `json:"project_id"`
+	CreatedAt                customTime `json:"created_at"`
+	UserName                 string     `json:"user_name"`
+	UserEmail                string     `json:"user_email"`
+	UpdatedAt                customTime `json:"updated_at"`
+	EventName                string     `json:"event_name"`
+	AccessLevel              string     `json:"access_level"`
+	ProjectName              string     `json:"project_name"`
+	ProjectPath              string     `json:"project_path"`
+	UserUsername             string     `json:"user_username"`
+	ProjectVisibility        string     `json:"project_visibility"`
+	ProjectPathWithNamespace string     `json:"project_path_with_namespace"`
+}
+
 type customTime struct {
 	time.Time
 }
