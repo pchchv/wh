@@ -201,3 +201,15 @@ type Target struct {
 	HTTPURL           string `json:"http_url"`
 	VisibilityLevel   int64  `json:"visibility_level"`
 }
+
+// StDiff contains all of the GitLab diff information.
+type StDiff struct {
+	Diff        string `json:"diff"`
+	NewPath     string `json:"new_path"`
+	OldPath     string `json:"old_path"`
+	AMode       string `json:"a_mode"`
+	BMode       string `json:"b_mode"`
+	NewFile     bool   `json:"new_file"`
+	RenamedFile bool   `json:"renamed_file"`
+	DeletedFile bool   `json:"deleted_file"`
+}
