@@ -717,6 +717,27 @@ type KeyRemovedEventPayload struct {
 	Id        int64      `json:"id"`
 }
 
+// IssueEventPayload contains the information for GitLab's issue event.
+type IssueEventPayload struct {
+	User             User             `json:"user"`
+	ObjectKind       string           `json:"object_kind"`
+	Changes          Changes          `json:"changes"`
+	Project          Project          `json:"project"`
+	Assignee         Assignee         `json:"assignee"`
+	Assignees        []Assignee       `json:"assignees"`
+	Repository       Repository       `json:"repository"`
+	ObjectAttributes ObjectAttributes `json:"object_attributes"`
+}
+
+// WikiPageEventPayload contains the information for GitLab's wiki created/updated event.
+type WikiPageEventPayload struct {
+	User             User             `json:"user"`
+	Wiki             Wiki             `json:"wiki"`
+	Project          Project          `json:"project"`
+	ObjectKind       string           `json:"object_kind"`
+	ObjectAttributes ObjectAttributes `json:"object_attributes"`
+}
+
 type customTime struct {
 	time.Time
 }
