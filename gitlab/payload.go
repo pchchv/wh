@@ -873,6 +873,22 @@ type PipelineEventPayload struct {
 	ObjectAttributes PipelineObjectAttributes `json:"object_attributes"`
 }
 
+// ConfidentialCommentEventPayload contains the information for GitLab's confidential issue event.
+//
+// NOTE: The data for confidential issues is currently the same as normal issues.
+// It may just be possible to embed the normal issue payload type here.
+type ConfidentialCommentEventPayload struct {
+	CommentEventPayload
+}
+
+// ConfidentialIssueEventPayload contains the information for GitLab's confidential issue event.
+//
+// NOTE: The data for confidential issues is currently the same as normal issues.
+// It may just be possible to embed the normal issue payload type here.
+type ConfidentialIssueEventPayload struct {
+	IssueEventPayload
+}
+
 type customTime struct {
 	time.Time
 }
