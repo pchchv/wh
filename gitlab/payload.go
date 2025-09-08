@@ -259,6 +259,16 @@ type BuildCommit struct {
 	FinishedAt  customTime `json:"finished_at"`
 }
 
+// LastCommit contains all of the GitLab last commit information.
+type LastCommit struct {
+	ID        string     `json:"id"`
+	URL       string     `json:"url"`
+	Title     string     `json:"title"`
+	Message   string     `json:"message"`
+	Author    Author     `json:"author"`
+	Timestamp customTime `json:"timestamp"`
+}
+
 // BuildEventPayload contains the information for GitLab's build status change event.
 type BuildEventPayload struct {
 	Tag                 bool        `json:"tag"`
