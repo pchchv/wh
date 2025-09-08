@@ -281,6 +281,38 @@ type LabelChanges struct {
 	Previous []Label `json:"previous"`
 }
 
+// Issue contains all of the GitLab issue information.
+type Issue struct {
+	ID          int64      `json:"id"`
+	IID         int64      `json:"iid"`
+	Position    int64      `json:"position"`
+	AuthorID    int64      `json:"author_id"`
+	ProjectID   int64      `json:"project_id"`
+	AssigneeID  int64      `json:"assignee_id"`
+	MilestoneID int64      `json:"milestone_id"`
+	Title       string     `json:"title"`
+	State       string     `json:"state"`
+	BranchName  string     `json:"branch_name"`
+	Description string     `json:"description"`
+	CreatedAt   customTime `json:"created_at"`
+	UpdatedAt   customTime `json:"updated_at"`
+}
+
+// Snippet contains all of the GitLab snippet information.
+type Snippet struct {
+	ID              int64      `json:"id"`
+	AuthorID        int64      `json:"author_id"`
+	ProjectID       int64      `json:"project_id"`
+	VisibilityLevel int64      `json:"visibility_level"`
+	Type            string     `json:"type"`
+	Title           string     `json:"title"`
+	Content         string     `json:"content"`
+	FileName        string     `json:"file_name"`
+	CreatedAt       customTime `json:"created_at"`
+	UpdatedAt       customTime `json:"updated_at"`
+	ExpiresAt       customTime `json:"expires_at"`
+}
+
 // ObjectAttributes contains all of the GitLab object attributes information.
 type ObjectAttributes struct {
 	ID               int64      `json:"id"`
