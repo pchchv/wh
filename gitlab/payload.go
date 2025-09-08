@@ -419,6 +419,25 @@ type ObjectAttributes struct {
 	LastCommit       LastCommit `json:"last_commit"`
 }
 
+// PipelineObjectAttributes contains pipeline specific GitLab object attributes information.
+type PipelineObjectAttributes struct {
+	ID         int64      `json:"id"`
+	IID        int64      `json:"iid"`
+	Duration   int64      `json:"duration"`
+	Url        string     `json:"url"`
+	Ref        string     `json:"ref"`
+	SHA        string     `json:"sha"`
+	Name       string     `json:"name"`
+	Source     string     `json:"source"`
+	Status     string     `json:"status"`
+	BeforeSHA  string     `json:"before_sha"`
+	Stages     []string   `json:"stages"`
+	Tag        bool       `json:"tag"`
+	CreatedAt  customTime `json:"created_at"`
+	FinishedAt customTime `json:"finished_at"`
+	Variables  []Variable `json:"variables"`
+}
+
 // BuildEventPayload contains the information for GitLab's build status change event.
 type BuildEventPayload struct {
 	Tag                 bool        `json:"tag"`
