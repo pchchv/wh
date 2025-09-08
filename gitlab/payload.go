@@ -281,6 +281,68 @@ type LabelChanges struct {
 	Previous []Label `json:"previous"`
 }
 
+// ObjectAttributes contains all of the GitLab object attributes information.
+type ObjectAttributes struct {
+	ID               int64      `json:"id"`
+	IID              int64      `json:"iid"`
+	StateID          int64      `json:"state_id"`
+	Duration         int64      `json:"duration"`
+	AuthorID         int64      `json:"author_id"`
+	ProjectID        int64      `json:"project_id"`
+	AssigneeID       int64      `json:"assignee_id"`
+	NoteableID       int64      `json:"noteable_id"`
+	MilestoneID      int64      `json:"milestone_id"`
+	UpdatedByID      int64      `json:"updated_by_id"`
+	TimeEstimate     int64      `json:"time_estimate"`
+	TotalTimeSpent   int64      `json:"total_time_spent"`
+	LastEditedByID   int64      `json:"last_edited_by_id"`
+	SourceProjectID  int64      `json:"source_project_id"`
+	TargetProjectID  int64      `json:"target_project_id"`
+	RelativePosition int64      `json:"relative_position"`
+	AssigneeIDS      []int64    `json:"assignee_ids"`
+	ReviewerIDs      []int64    `json:"reviewer_ids"`
+	URL              string     `json:"url"`
+	SHA              string     `json:"sha"`
+	Ref              string     `json:"ref"`
+	Note             string     `json:"note"`
+	Slug             string     `json:"slug"`
+	Title            string     `json:"title"`
+	State            string     `json:"state"`
+	Action           string     `json:"action"`
+	Format           string     `json:"format"`
+	Status           string     `json:"status"`
+	Content          string     `json:"content"`
+	Message          string     `json:"message"`
+	LineCode         string     `json:"line_code"`
+	CommitID         string     `json:"commit_id"`
+	StCommits        string     `json:"st_commits"`
+	BeforeSHA        string     `json:"before_sha"`
+	BranchName       string     `json:"branch_name"`
+	Description      string     `json:"description"`
+	MergeStatus      string     `json:"merge_status"`
+	TargetBranch     string     `json:"target_branch"`
+	SourceBranch     string     `json:"source_branch"`
+	NotebookType     string     `json:"noteable_type"`
+	Stages           []string   `json:"stages"`
+	StDiffs          []StDiff   `json:"st_diffs"`
+	Tag              bool       `json:"tag"`
+	Draft            bool       `json:"draft"`
+	System           bool       `json:"system"`
+	Confidential     bool       `json:"confidential"`
+	WorkInProgress   bool       `json:"work_in_progress"`
+	DiscussionLocked bool       `json:"discussion_locked"`
+	At               customTime `json:"attachment"`
+	DueDate          customTime `json:"due_date"`
+	CreatedAt        customTime `json:"created_at"`
+	UpdatedAt        customTime `json:"updated_at"`
+	LastEditedAt     customTime `json:"last_edited_at"`
+	Source           Source     `json:"source"`
+	Target           Target     `json:"target"`
+	Position         Position   `json:"position"`
+	Assignee         Assignee   `json:"assignee"`
+	LastCommit       LastCommit `json:"last_commit"`
+}
+
 // BuildEventPayload contains the information for GitLab's build status change event.
 type BuildEventPayload struct {
 	Tag                 bool        `json:"tag"`
