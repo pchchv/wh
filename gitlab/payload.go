@@ -847,6 +847,32 @@ type MergeRequestEventPayload struct {
 	ObjectAttributes ObjectAttributes `json:"object_attributes"`
 }
 
+// CommentEventPayload contains the information for GitLab's comment event.
+type CommentEventPayload struct {
+	User             User             `json:"user"`
+	ProjectID        int64            `json:"project_id"`
+	EventType        string           `json:"event_type"`
+	ObjectKind       string           `json:"object_kind"`
+	Issue            Issue            `json:"issue"`
+	Commit           Commit           `json:"commit"`
+	Project          Project          `json:"project"`
+	Snippet          Snippet          `json:"snippet"`
+	Repository       Repository       `json:"repository"`
+	MergeRequest     MergeRequest     `json:"merge_request"`
+	ObjectAttributes ObjectAttributes `json:"object_attributes"`
+}
+
+// PipelineEventPayload contains the information for GitLab's pipeline status change event.
+type PipelineEventPayload struct {
+	User             User                     `json:"user"`
+	ObjectKind       string                   `json:"object_kind"`
+	Commit           Commit                   `json:"commit"`
+	Project          Project                  `json:"project"`
+	Builds           []Build                  `json:"builds"`
+	MergeRequest     MergeRequest             `json:"merge_request"`
+	ObjectAttributes PipelineObjectAttributes `json:"object_attributes"`
+}
+
 type customTime struct {
 	time.Time
 }
