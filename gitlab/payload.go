@@ -738,6 +738,20 @@ type WikiPageEventPayload struct {
 	ObjectAttributes ObjectAttributes `json:"object_attributes"`
 }
 
+// MergeRequestEventPayload contains the information for GitLab's merge request event.
+type MergeRequestEventPayload struct {
+	User             User             `json:"user"`
+	Project          Project          `json:"project"`
+	Changes          Changes          `json:"changes"`
+	EventType        string           `json:"event_type"`
+	ObjectKind       string           `json:"object_kind"`
+	Repository       Repository       `json:"repository"`
+	Labels           []Label          `json:"labels"`
+	Assignees        []Assignee       `json:"assignees"`
+	Reviewers        []Reviewers      `json:"reviewers"`
+	ObjectAttributes ObjectAttributes `json:"object_attributes"`
+}
+
 type customTime struct {
 	time.Time
 }
