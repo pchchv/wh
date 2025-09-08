@@ -313,6 +313,50 @@ type Snippet struct {
 	ExpiresAt       customTime `json:"expires_at"`
 }
 
+// Build contains all of the GitLab Build information.
+type Build struct {
+	ID            int64         `json:"id"`
+	Manual        bool          `json:"manual"`
+	Name          string        `json:"name"`
+	When          string        `json:"when"`
+	Stage         string        `json:"stage"`
+	Status        string        `json:"status"`
+	FailureReason string        `json:"failure_reason"`
+	CreatedAt     customTime    `json:"created_at"`
+	StartedAt     customTime    `json:"started_at"`
+	FinishedAt    customTime    `json:"finished_at"`
+	User          User          `json:"user"`
+	Runner        Runner        `json:"runner"`
+	ArtifactsFile ArtifactsFile `json:"artifactsfile"`
+}
+
+// MergeRequest contains all of the GitLab merge request information.
+type MergeRequest struct {
+	ID              int64      `json:"id"`
+	IID             int64      `json:"iid"`
+	Position        int64      `json:"position"`
+	AuthorID        int64      `json:"author_id"`
+	AssigneeID      int64      `json:"assignee_id"`
+	MilestoneID     int64      `json:"milestone_id"`
+	SourceProjectID int64      `json:"source_project_id"`
+	TargetProjectID int64      `json:"target_project_id"`
+	URL             string     `json:"url"`
+	Title           string     `json:"title"`
+	State           string     `json:"state"`
+	MergeStatus     string     `json:"merge_status"`
+	Description     string     `json:"description"`
+	TargetBranch    string     `json:"target_branch"`
+	SourceBranch    string     `json:"source_branch"`
+	WorkInProgress  bool       `json:"work_in_progress"`
+	CreatedAt       customTime `json:"created_at"`
+	UpdatedAt       customTime `json:"updated_at"`
+	LockedAt        customTime `json:"locked_at"`
+	Source          Source     `json:"source"`
+	Target          Target     `json:"target"`
+	Assignee        Assignee   `json:"assignee"`
+	LastCommit      LastCommit `json:"last_commit"`
+}
+
 // ObjectAttributes contains all of the GitLab object attributes information.
 type ObjectAttributes struct {
 	ID               int64      `json:"id"`
