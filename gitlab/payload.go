@@ -269,6 +269,18 @@ type LastCommit struct {
 	Timestamp customTime `json:"timestamp"`
 }
 
+// Changes contains all changes associated with a GitLab issue or MR.
+type Changes struct {
+	DraftChanges DraftChanges `json:"draft"`
+	LabelChanges LabelChanges `json:"labels"`
+}
+
+// LabelChanges contains changes in labels associated with a GitLab issue or MR.
+type LabelChanges struct {
+	Current  []Label `json:"current"`
+	Previous []Label `json:"previous"`
+}
+
 // BuildEventPayload contains the information for GitLab's build status change event.
 type BuildEventPayload struct {
 	Tag                 bool        `json:"tag"`
