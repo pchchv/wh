@@ -286,3 +286,18 @@ func eventParsing(gitLabEvent Event, events []Event, payload []byte) (interface{
 		return nil, fmt.Errorf("unknown event %s", gitLabEvent)
 	}
 }
+
+// Option is a configuration option for the webhook.
+type Option func(*Webhook) error
+
+// New creates and returns a WebHook instance denoted by the Provider type.
+func New(options ...Option) (*Webhook, error) {
+	hook := new(Webhook)
+	for _, opt := range options {
+		if err := opt(hook); err != nil {
+			return nil, errors.New("Error applying Option")
+		}
+	}
+
+	return hook, nil
+}
