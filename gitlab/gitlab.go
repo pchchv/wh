@@ -52,6 +52,9 @@ const (
 	eventUserRemoveFromGroup  string = "user_remove_from_group"
 )
 
+// Options is a namespace variable for configuration options.
+var Options = WebhookOptions{}
+
 // Event defines a GitLab hook event type by the X-Gitlab-Event Header.
 type Event string
 
@@ -301,3 +304,6 @@ func New(options ...Option) (*Webhook, error) {
 
 	return hook, nil
 }
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
