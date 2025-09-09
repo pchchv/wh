@@ -1,5 +1,11 @@
 package gitlab
 
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+)
+
 const (
 	// GitLab hook types.
 	TagEvents                 Event  = "Tag Push Hook"
@@ -48,4 +54,194 @@ type Event string
 // Webhook instance contains all methods needed to process events.
 type Webhook struct {
 	secretHash []byte
+}
+
+func eventParsing(gitLabEvent Event, events []Event, payload []byte) (interface{}, error) {
+	var found bool
+	for _, evt := range events {
+		if evt == gitLabEvent {
+			found = true
+			break
+		}
+	}
+
+	// event not defined to be parsed
+	if !found {
+		return nil, errors.New("event not defined to be parsed")
+	}
+
+	switch gitLabEvent {
+	case PushEvents:
+		var pl PushEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case TagEvents:
+		var pl TagEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case ConfidentialIssuesEvents:
+		var pl ConfidentialIssueEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case IssuesEvents:
+		var pl IssueEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case ConfidentialCommentEvents:
+		var pl ConfidentialCommentEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case CommentEvents:
+		var pl CommentEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case MergeRequestEvents:
+		var pl MergeRequestEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case WikiPageEvents:
+		var pl WikiPageEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case PipelineEvents:
+		var pl PipelineEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case BuildEvents:
+		var pl BuildEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case JobEvents:
+		var pl JobEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		if err != nil {
+			return nil, err
+		}
+
+		if pl.ObjectKind == objectBuild {
+			return eventParsing(BuildEvents, events, payload)
+		}
+
+		return pl, nil
+	case DeploymentEvents:
+		var pl DeploymentEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		if err != nil {
+			return nil, err
+		}
+
+		return pl, nil
+	case SystemHookEvents:
+		var pl SystemHookPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		if err != nil {
+			return nil, err
+		}
+
+		switch pl.ObjectKind {
+		case objectPush:
+			return eventParsing(PushEvents, events, payload)
+		case objectTag:
+			return eventParsing(TagEvents, events, payload)
+		case objectMergeRequest:
+			return eventParsing(MergeRequestEvents, events, payload)
+		default:
+			switch pl.EventName {
+			case objectPush:
+				return eventParsing(PushEvents, events, payload)
+			case objectTag:
+				return eventParsing(TagEvents, events, payload)
+			case objectMergeRequest:
+				return eventParsing(MergeRequestEvents, events, payload)
+			case eventProjectCreate:
+				var pl ProjectCreatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventProjectDestroy:
+				var pl ProjectDestroyedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventProjectRename:
+				var pl ProjectRenamedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventProjectTransfer:
+				var pl ProjectTransferredEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventProjectUpdate:
+				var pl ProjectUpdatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserAddToTeam:
+				var pl TeamMemberAddedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserRemoveFromTeam:
+				var pl TeamMemberRemovedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserUpdateForTeam:
+				var pl TeamMemberUpdatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserCreate:
+				var pl UserCreatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserDestroy:
+				var pl UserRemovedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserFailedLogin:
+				var pl UserFailedLoginEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserRename:
+				var pl UserRenamedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventKeyCreate:
+				var pl KeyAddedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventKeyDestroy:
+				var pl KeyRemovedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventGroupCreate:
+				var pl GroupCreatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventGroupDestroy:
+				var pl GroupRemovedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventGroupRename:
+				var pl GroupRenamedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserAddToGroup:
+				var pl GroupMemberAddedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserRemoveFromGroup:
+				var pl GroupMemberRemovedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			case eventUserUpdateForGroup:
+				var pl GroupMemberUpdatedEventPayload
+				err := json.Unmarshal([]byte(payload), &pl)
+				return pl, err
+			default:
+				return nil, fmt.Errorf("unknown system hook event %s", gitLabEvent)
+			}
+		}
+	case ReleaseEvents:
+		var pl ReleaseEventPayload
+		err := json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	default:
+		return nil, fmt.Errorf("unknown event %s", gitLabEvent)
+	}
 }
