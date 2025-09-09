@@ -307,3 +307,14 @@ func New(options ...Option) (*Webhook, error) {
 
 // WebhookOptions is a namespace for configuration option methods.
 type WebhookOptions struct{}
+
+// Secret registers the GitLab secret.
+func (WebhookOptions) Secret(secret string) Option {
+	return func(hook *Webhook) error {
+		// already convert here to prevent timing attack
+		// (conversion depends on secret)
+		hash := sha512.Sum512([]byte(secret))
+		hook.secretHash = hash[:]
+		return nil
+	}
+}
