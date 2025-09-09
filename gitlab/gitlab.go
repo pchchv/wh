@@ -1,9 +1,13 @@
 package gitlab
 
 import (
+	"crypto/sha512"
+	"crypto/subtle"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
+	"net/http"
 )
 
 const (
@@ -54,6 +58,43 @@ type Event string
 // Webhook instance contains all methods needed to process events.
 type Webhook struct {
 	secretHash []byte
+}
+
+// Parse verifies and parses the events specified and returns the payload object or an error.
+func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error) {
+	defer func() {
+		_, _ = io.Copy(io.Discard, r.Body)
+		_ = r.Body.Close()
+	}()
+
+	if len(events) == 0 {
+		return nil, errors.New("no Event specified to parse")
+	}
+
+	if r.Method != http.MethodPost {
+		return nil, errors.New("invalid HTTP Method")
+	}
+
+	// шf a secret set is existing, it is necessary to check it in a constant time
+	if len(hook.secretHash) > 0 {
+		tokenHash := sha512.Sum512([]byte(r.Header.Get("X-Gitlab-Token")))
+		if subtle.ConstantTimeCompare(tokenHash[:], hook.secretHash[:]) == 0 {
+			return nil, errors.New("X-Gitlab-Token validation failed")
+		}
+	}
+
+	event := r.Header.Get("X-Gitlab-Event")
+	if len(event) == 0 {
+		return nil, errors.New("missing X-Gitlab-Event Header")
+	}
+
+	gitLabEvent := Event(event)
+	payload, err := io.ReadAll(r.Body)
+	if err != nil || len(payload) == 0 {
+		return nil, errors.New("error parsing payload")
+	}
+
+	return eventParsing(gitLabEvent, events, payload)
 }
 
 func eventParsing(gitLabEvent Event, events []Event, payload []byte) (interface{}, error) {
