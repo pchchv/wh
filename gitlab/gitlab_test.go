@@ -2,9 +2,13 @@ package gitlab
 
 import (
 	"log"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"testing"
 )
+
+const path = "/webhooks"
 
 var hook *Webhook
 
@@ -17,4 +21,10 @@ func TestMain(m *testing.M) {
 
 	os.Exit(m.Run())
 	// teardown
+}
+
+func newServer(handler http.HandlerFunc) *httptest.Server {
+	mux := http.NewServeMux()
+	mux.HandleFunc(path, handler)
+	return httptest.NewServer(mux)
 }
