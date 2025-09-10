@@ -144,3 +144,11 @@ func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error)
 
 // WebhookOptions is a namespace for configuration option methods.
 type WebhookOptions struct{}
+
+// Secret registers the GitLab secret.
+func (WebhookOptions) Secret(secret string) Option {
+	return func(hook *Webhook) error {
+		hook.secret = secret
+		return nil
+	}
+}
