@@ -374,3 +374,27 @@ type RepoCommitCommentCreatedPayload struct {
 		Hash string `json:"hash"`
 	} `json:"commit"`
 }
+
+// PullRequestCommentCreatedPayload is the Bitbucket pullrequest:comment_updated payload.
+type PullRequestCommentCreatedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Comment     Comment     `json:"comment"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
+
+// PullRequestCommentUpdatedPayload is the Bitbucket pullrequest:comment_created payload.
+type PullRequestCommentUpdatedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Comment     Comment     `json:"comment"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
+
+// PullRequestCommentDeletedPayload is the Bitbucket pullrequest:comment_deleted payload.
+type PullRequestCommentDeletedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Comment     Comment     `json:"comment"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
