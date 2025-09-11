@@ -35,3 +35,27 @@ type Project struct {
 	} `json:"links"`
 	Key string `json:"key"`
 }
+
+// Repository is the common Bitbucket Repository Sub Entity.
+type Repository struct {
+	Type      string `json:"type"`
+	Scm       string `json:"scm"`
+	UUID      string `json:"uuid"`
+	Name      string `json:"name"`
+	Website   string `json:"website"`
+	FullName  string `json:"full_name"`
+	IsPrivate bool   `json:"is_private"`
+	Links     struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+		HTML struct {
+			Href string `json:"href"`
+		} `json:"html"`
+		Avatar struct {
+			Href string `json:"href"`
+		} `json:"avatar"`
+	} `json:"links"`
+	Project Project `json:"project"`
+	Owner   Owner   `json:"owner"`
+}
