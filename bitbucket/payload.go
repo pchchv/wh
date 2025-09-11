@@ -479,3 +479,18 @@ type PullRequestUnapprovedPayload struct {
 		User Owner     `json:"user"`
 	} `json:"approval"`
 }
+
+// IssueCreatedPayload is the Bitbucket issue:created payload.
+type IssueCreatedPayload struct {
+	Actor      Owner      `json:"actor"`
+	Issue      Issue      `json:"issue"`
+	Repository Repository `json:"repository"`
+}
+
+// IssueCommentCreatedPayload is the Bitbucket pullrequest:created payload.
+type IssueCommentCreatedPayload struct {
+	Actor      Owner      `json:"actor"`
+	Repository Repository `json:"repository"`
+	Issue      Issue      `json:"issue"`
+	Comment    Comment    `json:"comment"`
+}
