@@ -183,3 +183,11 @@ func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error)
 
 // WebhookOptions is a namespace for configuration option methods.
 type WebhookOptions struct{}
+
+// UUID registers the BitBucket secret.
+func (WebhookOptions) UUID(uuid string) Option {
+	return func(hook *Webhook) error {
+		hook.uuid = uuid
+		return nil
+	}
+}
