@@ -135,6 +135,37 @@ type PullRequest struct {
 	} `json:"links"`
 }
 
+// Issue is the common Bitbucket Issue Sub Entity.
+type Issue struct {
+	ID        int64  `json:"id"`
+	Title     string `json:"title"`
+	Component string `json:"component"`
+	Content   struct {
+		Raw    string `json:"raw"`
+		HTML   string `json:"html"`
+		Markup string `json:"markup"`
+	} `json:"content"`
+	Priority  string `json:"priority"`
+	State     string `json:"state"`
+	Type      string `json:"type"`
+	Milestone struct {
+		Name string `json:"name"`
+	} `json:"milestone"`
+	Version struct {
+		Name string `json:"name"`
+	} `json:"version"`
+	CreatedOn time.Time `json:"created_on"`
+	UpdatedOn time.Time `json:"updated_on"`
+	Links     struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+		HTML struct {
+			Href string `json:"href"`
+		} `json:"html"`
+	} `json:"links"`
+}
+
 // RepoForkPayload is the Bitbucket repo:fork payload.
 type RepoForkPayload struct {
 	Actor      Owner      `json:"actor"`
