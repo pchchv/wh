@@ -398,3 +398,17 @@ type PullRequestCommentDeletedPayload struct {
 	Repository  Repository  `json:"repository"`
 	PullRequest PullRequest `json:"pullrequest"`
 }
+
+// PullRequestUpdatedPayload is the Bitbucket pullrequest:updated payload.
+type PullRequestUpdatedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
+
+// PullRequestCreatedPayload is the Bitbucket pullrequest:created payload.
+type PullRequestCreatedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
