@@ -59,3 +59,62 @@ type Repository struct {
 	Project Project `json:"project"`
 	Owner   Owner   `json:"owner"`
 }
+
+// RepoForkPayload is the Bitbucket repo:fork payload.
+type RepoForkPayload struct {
+	Actor      Owner      `json:"actor"`
+	Fork       Repository `json:"fork"`
+	Repository Repository `json:"repository"`
+}
+
+// RepoUpdatedPayload is the Bitbucket repo:updated payload.
+type RepoUpdatedPayload struct {
+	Actor      Owner      `json:"actor"`
+	Repository Repository `json:"repository"`
+	Changes    struct {
+		Name struct {
+			New string `json:"new"`
+			Old string `json:"old"`
+		} `json:"name"`
+		Website struct {
+			New string `json:"new"`
+			Old string `json:"old"`
+		} `json:"website"`
+		Language struct {
+			New string `json:"new"`
+			Old string `json:"old"`
+		} `json:"language"`
+		Links struct {
+			New struct {
+				Avatar struct {
+					Href string `json:"href"`
+				} `json:"avatar"`
+				Self struct {
+					Href string `json:"href"`
+				} `json:"self"`
+				HTML struct {
+					Href string `json:"href"`
+				} `json:"html"`
+			} `json:"new"`
+			Old struct {
+				Avatar struct {
+					Href string `json:"href"`
+				} `json:"avatar"`
+				Self struct {
+					Href string `json:"href"`
+				} `json:"self"`
+				HTML struct {
+					Href string `json:"href"`
+				} `json:"html"`
+			} `json:"old"`
+		} `json:"links"`
+		Description struct {
+			New string `json:"new"`
+			Old string `json:"old"`
+		} `json:"description"`
+		FullName struct {
+			New string `json:"new"`
+			Old string `json:"old"`
+		} `json:"full_name"`
+	} `json:"changes"`
+}
