@@ -19,3 +19,19 @@ type Owner struct {
 		} `json:"avatar"`
 	} `json:"links"`
 }
+
+// Project is the common Bitbucket Project Sub Entity.
+type Project struct {
+	Type    string `json:"type"`
+	UUID    string `json:"uuid"`
+	Project string `json:"project"`
+	Links   struct {
+		HTML struct {
+			Href string `json:"href"`
+		} `json:"html"`
+		Avatar struct {
+			Href string `json:"href"`
+		} `json:"avatar"`
+	} `json:"links"`
+	Key string `json:"key"`
+}
