@@ -90,6 +90,51 @@ type Comment struct {
 	} `json:"links"`
 }
 
+// PullRequest is the common Bitbucket Pull Request Sub Entity.
+type PullRequest struct {
+	ID          int64  `json:"id"`
+	Title       string `json:"title"`
+	State       string `json:"state"`
+	Author      Owner  `json:"author"`
+	Description string `json:"description"`
+	Source      struct {
+		Branch struct {
+			Name string `json:"name"`
+		} `json:"branch"`
+		Commit struct {
+			Hash string `json:"hash"`
+		} `json:"commit"`
+		Repository Repository `json:"repository"`
+	} `json:"source"`
+	Destination struct {
+		Branch struct {
+			Name string `json:"name"`
+		} `json:"branch"`
+		Commit struct {
+			Hash string `json:"hash"`
+		} `json:"commit"`
+		Repository Repository `json:"repository"`
+	} `json:"destination"`
+	MergeCommit struct {
+		Hash string `json:"hash"`
+	} `json:"merge_commit"`
+	Participants      []Owner   `json:"participants"`
+	Reviewers         []Owner   `json:"reviewers"`
+	CloseSourceBranch bool      `json:"close_source_branch"`
+	ClosedBy          Owner     `json:"closed_by"`
+	Reason            string    `json:"reason"`
+	CreatedOn         time.Time `json:"created_on"`
+	UpdatedOn         time.Time `json:"updated_on"`
+	Links             struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+		HTML struct {
+			Href string `json:"href"`
+		} `json:"html"`
+	} `json:"links"`
+}
+
 // RepoForkPayload is the Bitbucket repo:fork payload.
 type RepoForkPayload struct {
 	Actor      Owner      `json:"actor"`
