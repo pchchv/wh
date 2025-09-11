@@ -62,6 +62,34 @@ type Repository struct {
 	Owner   Owner   `json:"owner"`
 }
 
+// Comment is the common Bitbucket Comment Sub Entity.
+type Comment struct {
+	ID     int64 `json:"id"`
+	Parent struct {
+		ID int64 `json:"id"`
+	} `json:"parent"`
+	Content struct {
+		Raw    string `json:"raw"`
+		HTML   string `json:"html"`
+		Markup string `json:"markup"`
+	} `json:"content"`
+	Inline struct {
+		Path string `json:"path"`
+		From *int64 `json:"from"`
+		To   int64  `json:"to"`
+	} `json:"inline"`
+	CreatedOn time.Time `json:"created_on"`
+	UpdatedOn time.Time `json:"updated_on"`
+	Links     struct {
+		Self struct {
+			Href string `json:"href"`
+		} `json:"self"`
+		HTML struct {
+			Href string `json:"href"`
+		} `json:"html"`
+	} `json:"links"`
+}
+
 // RepoForkPayload is the Bitbucket repo:fork payload.
 type RepoForkPayload struct {
 	Actor      Owner      `json:"actor"`
