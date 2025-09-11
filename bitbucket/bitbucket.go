@@ -30,6 +30,9 @@ const (
 	PullRequestCommentDeletedEvent Event = "pullrequest:comment_deleted"
 )
 
+// Options is a namespace var for configuration options.
+var Options = WebhookOptions{}
+
 // Event defines a Bitbucket hook event type.
 type Event string
 
@@ -177,3 +180,6 @@ func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error)
 		return nil, fmt.Errorf("unknown event %s", bitbucketEvent)
 	}
 }
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
