@@ -426,3 +426,25 @@ type PullRequestDeclinedPayload struct {
 	Repository  Repository  `json:"repository"`
 	PullRequest PullRequest `json:"pullrequest"`
 }
+
+// PullRequestApprovedPayload is the Bitbucket pullrequest:approved payload.
+type PullRequestApprovedPayload struct {
+	Actor       Owner       `json:"actor"`
+	PullRequest PullRequest `json:"pullrequest"`
+	Repository  Repository  `json:"repository"`
+	Approval    struct {
+		Date time.Time `json:"date"`
+		User Owner     `json:"user"`
+	} `json:"approval"`
+}
+
+// PullRequestUnapprovedPayload is the Bitbucket pullrequest:unapproved payload.
+type PullRequestUnapprovedPayload struct {
+	Actor       Owner       `json:"actor"`
+	PullRequest PullRequest `json:"pullrequest"`
+	Repository  Repository  `json:"repository"`
+	Approval    struct {
+		Date time.Time `json:"date"`
+		User Owner     `json:"user"`
+	} `json:"approval"`
+}
