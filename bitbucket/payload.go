@@ -494,3 +494,17 @@ type IssueCommentCreatedPayload struct {
 	Issue      Issue      `json:"issue"`
 	Comment    Comment    `json:"comment"`
 }
+
+// IssueUpdatedPayload is the Bitbucket issue:updated payload.
+type IssueUpdatedPayload struct {
+	Actor      Owner      `json:"actor"`
+	Issue      Issue      `json:"issue"`
+	Comment    Comment    `json:"comment"`
+	Repository Repository `json:"repository"`
+	Changes    struct {
+		Status struct {
+			Old string `json:"old"`
+			New string `json:"new"`
+		} `json:"status"`
+	} `json:"changes"`
+}
