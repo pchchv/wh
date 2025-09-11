@@ -412,3 +412,17 @@ type PullRequestCreatedPayload struct {
 	Repository  Repository  `json:"repository"`
 	PullRequest PullRequest `json:"pullrequest"`
 }
+
+// PullRequestMergedPayload is the Bitbucket pullrequest:fulfilled payload.
+type PullRequestMergedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
+
+// PullRequestDeclinedPayload is the Bitbucket pullrequest:rejected payload.
+type PullRequestDeclinedPayload struct {
+	Actor       Owner       `json:"actor"`
+	Repository  Repository  `json:"repository"`
+	PullRequest PullRequest `json:"pullrequest"`
+}
