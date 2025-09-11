@@ -319,3 +319,13 @@ type RepoCommitStatusUpdatedPayload struct {
 		} `json:"links"`
 	} `json:"commit_status"`
 }
+
+// RepoCommitCommentCreatedPayload is the Bitbucket repo:commit_comment_created payload.
+type RepoCommitCommentCreatedPayload struct {
+	Repository Repository `json:"repository"`
+	Comment    Comment    `json:"comment"`
+	Actor      Owner      `json:"actor"`
+	Commit     struct {
+		Hash string `json:"hash"`
+	} `json:"commit"`
+}
