@@ -243,3 +243,51 @@ type RepoPushPayload struct {
 		} `json:"changes"`
 	} `json:"push"`
 }
+
+// RepoCommitStatusCreatedPayload is the Bitbucket repo:commit_status_created payload.
+type RepoCommitStatusCreatedPayload struct {
+	Actor        Owner      `json:"actor"`
+	Repository   Repository `json:"repository"`
+	CommitStatus struct {
+		Name        string    `json:"name"`
+		Description string    `json:"description"`
+		State       string    `json:"state"`
+		Key         string    `json:"key"`
+		URL         string    `json:"url"`
+		Type        string    `json:"type"`
+		CreatedOn   time.Time `json:"created_on"`
+		UpdatedOn   time.Time `json:"updated_on"`
+		Links       struct {
+			Commit struct {
+				Href string `json:"href"`
+			} `json:"commit"`
+			Self struct {
+				Href string `json:"href"`
+			} `json:"self"`
+		} `json:"links"`
+	} `json:"commit_status"`
+}
+
+// RepoCommitStatusUpdatedPayload is the Bitbucket repo:commit_status_updated payload.
+type RepoCommitStatusUpdatedPayload struct {
+	Actor        Owner      `json:"actor"`
+	Repository   Repository `json:"repository"`
+	CommitStatus struct {
+		Name        string    `json:"name"`
+		Description string    `json:"description"`
+		State       string    `json:"state"`
+		Key         string    `json:"key"`
+		URL         string    `json:"url"`
+		Type        string    `json:"type"`
+		CreatedOn   time.Time `json:"created_on"`
+		UpdatedOn   time.Time `json:"updated_on"`
+		Links       struct {
+			Commit struct {
+				Href string `json:"href"`
+			} `json:"commit"`
+			Self struct {
+				Href string `json:"href"`
+			} `json:"self"`
+		} `json:"links"`
+	} `json:"commit_status"`
+}
