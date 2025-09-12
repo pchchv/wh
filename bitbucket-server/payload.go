@@ -1,5 +1,7 @@
 package bitbucket_server
 
+import "time"
+
 type DiagnosticsPingPayload struct{}
 
 type User struct {
@@ -94,3 +96,5 @@ type RepositoryReference struct {
 	LatestCommit string     `json:"latestCommit,omitempty"`
 	Repository   Repository `json:"repository,omitempty"`
 }
+
+type Date time.Time
