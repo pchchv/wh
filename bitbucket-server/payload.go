@@ -1,5 +1,11 @@
 package bitbucket_server
 
+import (
+	"fmt"
+	"strings"
+	"time"
+)
+
 type DiagnosticsPingPayload struct{}
 
 type User struct {
@@ -36,12 +42,143 @@ type Project struct {
 	Links  map[string]interface{} `json:"links"`
 }
 
+type PullRequest struct {
+	ID           uint64                   `json:"id"`
+	Version      uint64                   `json:"version"`
+	ClosedDate   uint64                   `json:"closedDate,omitempty"`
+	CreatedDate  uint64                   `json:"createdDate"`
+	UpdatedDate  uint64                   `json:"updatedDate,omitempty"`
+	Title        string                   `json:"title"`
+	State        string                   `json:"state"`
+	Description  string                   `json:"description,omitempty"`
+	Open         bool                     `json:"open"`
+	Closed       bool                     `json:"closed"`
+	Locked       bool                     `json:"locked"`
+	ToRef        RepositoryReference      `json:"toRef"`
+	FromRef      RepositoryReference      `json:"fromRef"`
+	Author       PullRequestParticipant   `json:"author"`
+	Reviewers    []PullRequestParticipant `json:"reviewers"`
+	Participants []PullRequestParticipant `json:"participants"`
+	Links        map[string]interface{}   `json:"links"`
+	Properties   map[string]interface{}   `json:"properties,omitempty"`
+}
+
 type PullRequestParticipant struct {
 	Role               string `json:"role"`
 	Status             string `json:"status"`
 	LastReviewedCommit string `json:"lastReviewedCommit,omitempty"`
 	Approved           bool   `json:"approved"`
 	User               User   `json:"user"`
+}
+
+type PullRequestReviewerUpdatedPayload struct {
+	Date             Date        `json:"date"`
+	Actor            User        `json:"actor"`
+	EventKey         Event       `json:"eventKey"`
+	PullRequest      PullRequest `json:"pullRequest"`
+	AddedReviewers   []User      `json:"addedReviewers"`
+	RemovedReviewers []User      `json:"removedReviewers"`
+}
+
+type PullRequestReviewerApprovedPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
+type PullRequestReviewerUnapprovedPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
+type PullRequestReviewerNeedsWorkPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
+type PullRequestCommentAddedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID uint64      `json:"commentParentId,omitempty"`
+}
+
+type PullRequestCommentEditedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID string      `json:"commentParentId,omitempty"`
+	PreviousComment string      `json:"previousComment"`
+}
+
+type PullRequestCommentDeletedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID uint64      `json:"commentParentId,omitempty"`
+}
+
+type PullRequestDeclinedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestDeletedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestMergedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestFromReferenceUpdatedPayload struct {
+	Date             Date        `json:"date"`
+	Actor            User        `json:"actor"`
+	EventKey         Event       `json:"eventKey"`
+	PullRequest      PullRequest `json:"pullRequest"`
+	PreviousFromHash string      `json:"previousFromHash"`
+}
+
+type PullRequestOpenedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestModifiedPayload struct {
+	Date                Date                   `json:"date"`
+	Actor               User                   `json:"actor"`
+	EventKey            Event                  `json:"eventKey"`
+	PullRequest         PullRequest            `json:"pullRequest"`
+	PreviousTitle       string                 `json:"previousTitle"`
+	PreviousDescription string                 `json:"previousDescription"`
+	PreviousTarget      map[string]interface{} `json:"previousTarget"`
 }
 
 type Repository struct {
@@ -72,4 +209,71 @@ type RepositoryReference struct {
 	DisplayID    string     `json:"displayId"`
 	LatestCommit string     `json:"latestCommit,omitempty"`
 	Repository   Repository `json:"repository,omitempty"`
+}
+
+type RepositoryCommentAddedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	Commit     string     `json:"commit"`
+	Comment    Comment    `json:"comment"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
+type RepositoryCommentEditedPayload struct {
+	Date            Date       `json:"date"`
+	Actor           User       `json:"actor"`
+	Commit          string     `json:"commit"`
+	Comment         Comment    `json:"comment"`
+	EventKey        Event      `json:"eventKey"`
+	Repository      Repository `json:"repository"`
+	PreviousComment string     `json:"previousComment"`
+}
+
+type RepositoryCommentDeletedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	Commit     string     `json:"commit"`
+	Comment    Comment    `json:"comment"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
+type RepositoryModifiedPayload struct {
+	EventKey Event      `json:"eventKey"`
+	Actor    User       `json:"actor"`
+	Date     Date       `json:"date"`
+	New      Repository `json:"new"`
+	Old      Repository `json:"old"`
+}
+
+type RepositoryForkedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
+type RepositoryReferenceChangedPayload struct {
+	Date       Date               `json:"date"`
+	Actor      User               `json:"actor"`
+	EventKey   Event              `json:"eventKey"`
+	Repository Repository         `json:"repository"`
+	Changes    []RepositoryChange `json:"changes"`
+}
+
+type Date time.Time
+
+func (b Date) MarshalJSON() ([]byte, error) {
+	return []byte(fmt.Sprintf("\"%s\"", time.Time(b).Format("2006-01-02T15:04:05Z0700"))), nil
+}
+
+func (b *Date) UnmarshalJSON(p []byte) error {
+	if t, err := time.Parse("2006-01-02T15:04:05Z0700", strings.Replace(string(p), "\"", "", -1)); err != nil {
+		return err
+	} else {
+		*b = Date(t)
+	}
+
+	return nil
 }
