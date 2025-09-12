@@ -33,3 +33,11 @@ type Project struct {
 	Owner  User                   `json:"owner"`
 	Links  map[string]interface{} `json:"links"`
 }
+
+type PullRequestParticipant struct {
+	Role               string `json:"role"`
+	Status             string `json:"status"`
+	LastReviewedCommit string `json:"lastReviewedCommit,omitempty"`
+	Approved           bool   `json:"approved"`
+	User               User   `json:"user"`
+}
