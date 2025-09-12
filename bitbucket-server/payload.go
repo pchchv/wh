@@ -164,6 +164,23 @@ type PullRequestFromReferenceUpdatedPayload struct {
 	PreviousFromHash string      `json:"previousFromHash"`
 }
 
+type PullRequestOpenedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestModifiedPayload struct {
+	Date                Date                   `json:"date"`
+	Actor               User                   `json:"actor"`
+	EventKey            Event                  `json:"eventKey"`
+	PullRequest         PullRequest            `json:"pullRequest"`
+	PreviousTitle       string                 `json:"previousTitle"`
+	PreviousDescription string                 `json:"previousDescription"`
+	PreviousTarget      map[string]interface{} `json:"previousTarget"`
+}
+
 type Repository struct {
 	ID            uint64                 `json:"id"`
 	Public        bool                   `json:"public"`
