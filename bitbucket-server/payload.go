@@ -107,6 +107,34 @@ type PullRequestReviewerNeedsWorkPayload struct {
 	PreviousStatus string                 `json:"previousStatus"`
 }
 
+type PullRequestCommentAddedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID uint64      `json:"commentParentId,omitempty"`
+}
+
+type PullRequestCommentEditedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID string      `json:"commentParentId,omitempty"`
+	PreviousComment string      `json:"previousComment"`
+}
+
+type PullRequestCommentDeletedPayload struct {
+	Date            Date        `json:"date"`
+	Actor           User        `json:"actor"`
+	Comment         Comment     `json:"comment"`
+	EventKey        Event       `json:"eventKey"`
+	PullRequest     PullRequest `json:"pullRequest"`
+	CommentParentID uint64      `json:"commentParentId,omitempty"`
+}
+
 type Repository struct {
 	ID            uint64                 `json:"id"`
 	Public        bool                   `json:"public"`
