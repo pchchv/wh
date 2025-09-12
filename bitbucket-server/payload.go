@@ -156,6 +156,14 @@ type PullRequestMergedPayload struct {
 	PullRequest PullRequest `json:"pullRequest"`
 }
 
+type PullRequestFromReferenceUpdatedPayload struct {
+	Date             Date        `json:"date"`
+	Actor            User        `json:"actor"`
+	EventKey         Event       `json:"eventKey"`
+	PullRequest      PullRequest `json:"pullRequest"`
+	PreviousFromHash string      `json:"previousFromHash"`
+}
+
 type Repository struct {
 	ID            uint64                 `json:"id"`
 	Public        bool                   `json:"public"`
