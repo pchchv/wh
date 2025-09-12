@@ -34,6 +34,9 @@ const (
 	PullRequestFromReferenceUpdatedEvent Event = "pr:from_ref_updated"
 )
 
+// Options is a namespace var for configuration options.
+var Options = WebhookOptions{}
+
 type Event string
 
 // Option is a configuration option for the webhook.
@@ -192,3 +195,6 @@ func (hook *Webhook) Parse(r *http.Request, events ...Event) (interface{}, error
 		return nil, fmt.Errorf("unknown event %s", bitbucketEvent)
 	}
 }
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
