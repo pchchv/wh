@@ -36,6 +36,27 @@ type Project struct {
 	Links  map[string]interface{} `json:"links"`
 }
 
+type PullRequest struct {
+	ID           uint64                   `json:"id"`
+	Version      uint64                   `json:"version"`
+	ClosedDate   uint64                   `json:"closedDate,omitempty"`
+	CreatedDate  uint64                   `json:"createdDate"`
+	UpdatedDate  uint64                   `json:"updatedDate,omitempty"`
+	Title        string                   `json:"title"`
+	State        string                   `json:"state"`
+	Description  string                   `json:"description,omitempty"`
+	Open         bool                     `json:"open"`
+	Closed       bool                     `json:"closed"`
+	Locked       bool                     `json:"locked"`
+	ToRef        RepositoryReference      `json:"toRef"`
+	FromRef      RepositoryReference      `json:"fromRef"`
+	Author       PullRequestParticipant   `json:"author"`
+	Reviewers    []PullRequestParticipant `json:"reviewers"`
+	Participants []PullRequestParticipant `json:"participants"`
+	Links        map[string]interface{}   `json:"links"`
+	Properties   map[string]interface{}   `json:"properties,omitempty"`
+}
+
 type PullRequestParticipant struct {
 	Role               string `json:"role"`
 	Status             string `json:"status"`
