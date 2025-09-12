@@ -57,3 +57,19 @@ type Repository struct {
 	Origin        *Repository            `json:"origin,omitempty"`
 	Links         map[string]interface{} `json:"links"`
 }
+
+type RepositoryChange struct {
+	Type        string              `json:"type"`
+	ToHash      string              `json:"toHash"`
+	FromHash    string              `json:"fromHash"`
+	ReferenceID string              `json:"refId"`
+	Reference   RepositoryReference `json:"ref"`
+}
+
+type RepositoryReference struct {
+	ID           string     `json:"id"`
+	Type         string     `json:"type,omitempty"`
+	DisplayID    string     `json:"displayId"`
+	LatestCommit string     `json:"latestCommit,omitempty"`
+	Repository   Repository `json:"repository,omitempty"`
+}
