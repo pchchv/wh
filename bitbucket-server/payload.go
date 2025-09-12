@@ -254,6 +254,14 @@ type RepositoryForkedPayload struct {
 	Repository Repository `json:"repository"`
 }
 
+type RepositoryReferenceChangedPayload struct {
+	Date       Date               `json:"date"`
+	Actor      User               `json:"actor"`
+	EventKey   Event              `json:"eventKey"`
+	Repository Repository         `json:"repository"`
+	Changes    []RepositoryChange `json:"changes"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
