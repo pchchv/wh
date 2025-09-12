@@ -1,6 +1,10 @@
 package bitbucket_server
 
-import "time"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 type DiagnosticsPingPayload struct{}
 
@@ -98,3 +102,17 @@ type RepositoryReference struct {
 }
 
 type Date time.Time
+
+func (b Date) MarshalJSON() ([]byte, error) {
+	return []byte(fmt.Sprintf("\"%s\"", time.Time(b).Format("2006-01-02T15:04:05Z0700"))), nil
+}
+
+func (b *Date) UnmarshalJSON(p []byte) error {
+	if t, err := time.Parse("2006-01-02T15:04:05Z0700", strings.Replace(string(p), "\"", "", -1)); err != nil {
+		return err
+	} else {
+		*b = Date(t)
+	}
+
+	return nil
+}
