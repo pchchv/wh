@@ -43,3 +43,17 @@ type PullRequestParticipant struct {
 	Approved           bool   `json:"approved"`
 	User               User   `json:"user"`
 }
+
+type Repository struct {
+	ID            uint64                 `json:"id"`
+	Public        bool                   `json:"public"`
+	Forkable      bool                   `json:"forkable"`
+	Slug          string                 `json:"slug"`
+	Name          string                 `json:"name"`
+	ScmID         string                 `json:"scmId"`
+	State         string                 `json:"state"`
+	StatusMessage string                 `json:"statusMessage"`
+	Project       Project                `json:"project"`
+	Origin        *Repository            `json:"origin,omitempty"`
+	Links         map[string]interface{} `json:"links"`
+}
