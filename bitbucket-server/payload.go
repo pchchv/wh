@@ -239,6 +239,21 @@ type RepositoryCommentDeletedPayload struct {
 	Repository Repository `json:"repository"`
 }
 
+type RepositoryModifiedPayload struct {
+	EventKey Event      `json:"eventKey"`
+	Actor    User       `json:"actor"`
+	Date     Date       `json:"date"`
+	New      Repository `json:"new"`
+	Old      Repository `json:"old"`
+}
+
+type RepositoryForkedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
