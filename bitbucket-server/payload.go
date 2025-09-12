@@ -211,6 +211,34 @@ type RepositoryReference struct {
 	Repository   Repository `json:"repository,omitempty"`
 }
 
+type RepositoryCommentAddedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	Commit     string     `json:"commit"`
+	Comment    Comment    `json:"comment"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
+type RepositoryCommentEditedPayload struct {
+	Date            Date       `json:"date"`
+	Actor           User       `json:"actor"`
+	Commit          string     `json:"commit"`
+	Comment         Comment    `json:"comment"`
+	EventKey        Event      `json:"eventKey"`
+	Repository      Repository `json:"repository"`
+	PreviousComment string     `json:"previousComment"`
+}
+
+type RepositoryCommentDeletedPayload struct {
+	Date       Date       `json:"date"`
+	Actor      User       `json:"actor"`
+	Commit     string     `json:"commit"`
+	Comment    Comment    `json:"comment"`
+	EventKey   Event      `json:"eventKey"`
+	Repository Repository `json:"repository"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
