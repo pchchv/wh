@@ -71,6 +71,42 @@ type PullRequestParticipant struct {
 	User               User   `json:"user"`
 }
 
+type PullRequestReviewerUpdatedPayload struct {
+	Date             Date        `json:"date"`
+	Actor            User        `json:"actor"`
+	EventKey         Event       `json:"eventKey"`
+	PullRequest      PullRequest `json:"pullRequest"`
+	AddedReviewers   []User      `json:"addedReviewers"`
+	RemovedReviewers []User      `json:"removedReviewers"`
+}
+
+type PullRequestReviewerApprovedPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
+type PullRequestReviewerUnapprovedPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
+type PullRequestReviewerNeedsWorkPayload struct {
+	Date           Date                   `json:"date"`
+	Actor          User                   `json:"actor"`
+	EventKey       Event                  `json:"eventKey"`
+	PullRequest    PullRequest            `json:"pullRequest"`
+	Participant    PullRequestParticipant `json:"participant"`
+	PreviousStatus string                 `json:"previousStatus"`
+}
+
 type Repository struct {
 	ID            uint64                 `json:"id"`
 	Public        bool                   `json:"public"`
