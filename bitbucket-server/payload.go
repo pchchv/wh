@@ -23,3 +23,13 @@ type Comment struct {
 	Properties          map[string]interface{}   `json:"properties,omitempty"`
 	PermittedOperations map[string]interface{}   `json:"permittedOperations,omitempty"`
 }
+
+type Project struct {
+	ID     uint64                 `json:"id"`
+	Key    string                 `json:"key"`
+	Name   string                 `json:"name"`
+	Type   string                 `json:"type"`
+	Public *bool                  `json:"public,omitempty"`
+	Owner  User                   `json:"owner"`
+	Links  map[string]interface{} `json:"links"`
+}
