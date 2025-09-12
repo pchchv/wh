@@ -135,6 +135,27 @@ type PullRequestCommentDeletedPayload struct {
 	CommentParentID uint64      `json:"commentParentId,omitempty"`
 }
 
+type PullRequestDeclinedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestDeletedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
+type PullRequestMergedPayload struct {
+	Date        Date        `json:"date"`
+	Actor       User        `json:"actor"`
+	EventKey    Event       `json:"eventKey"`
+	PullRequest PullRequest `json:"pullRequest"`
+}
+
 type Repository struct {
 	ID            uint64                 `json:"id"`
 	Public        bool                   `json:"public"`
