@@ -1,5 +1,7 @@
 package bitbucket_server
 
+type DiagnosticsPingPayload struct{}
+
 type User struct {
 	ID           uint64                 `json:"id"`
 	Active       bool                   `json:"active"`
