@@ -120,6 +120,27 @@ type ResourceContainers struct {
 	Collection Account `json:"collection"`
 }
 
+type Build struct {
+	ID                 int             `json:"id"`
+	HasDiagnostics     bool            `json:"hasDiagnostics"`
+	RetainIndefinitely bool            `json:"retainIndefinitely"`
+	URI                string          `json:"uri"`
+	URL                string          `json:"url"`
+	Reason             string          `json:"reason"`
+	Status             string          `json:"status"`
+	BuildNumber        string          `json:"buildNumber"`
+	DropLocation       string          `json:"dropLocation"`
+	SourceGetVersion   string          `json:"sourceGetVersion"`
+	Log                Log             `json:"log"`
+	Drop               Drop            `json:"drop"`
+	Queue              Queue           `json:"queue"`
+	Requests           []Request       `json:"requests"`
+	StartTime          Date            `json:"startTime"`
+	FinishTime         Date            `json:"finishTime"`
+	Definition         BuildDefinition `json:"definition"`
+	LastChangedBy      User            `json:"lastChangedBy"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
