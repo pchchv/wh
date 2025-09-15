@@ -1,4 +1,4 @@
-// azure devops does not send an event header, this BasicEvent is provided to get the EventType.
+// The `azure` package accepts Azure DevOps Server webhooks.
 package azure
 
 import (
@@ -82,4 +82,18 @@ func (hook Webhook) verifyBasicAuth(r *http.Request) bool {
 
 	username, password, ok := r.BasicAuth()
 	return ok && username == hook.username && password == hook.password
+}
+
+// Option is a configuration option for the webhook.
+type Option func(*Webhook) error
+
+// New creates and returns a WebHook instance.
+func New(options ...Option) (*Webhook, error) {
+	hook := new(Webhook)
+	for _, opt := range options {
+		if err := opt(hook); err != nil {
+			return nil, errors.New("Error applying Option")
+		}
+	}
+	return hook, nil
 }

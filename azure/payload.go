@@ -161,6 +161,7 @@ type PullRequest struct {
 	LastMergeTargetCommit Commit     `json:"lastMergeTargetCommit"`
 }
 
+// Azure DevOps does not send an event header, this BasicEvent is provided to get the EventType.
 type BasicEvent struct {
 	ID          string `json:"id"`
 	Scope       string `json:"scope"`
