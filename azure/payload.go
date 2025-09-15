@@ -31,6 +31,12 @@ type Project struct {
 	State string `json:"state"`
 }
 
+type PushedBy struct {
+	ID          string `json:"id"`
+	UniqueName  string `json:"uniqueName"`
+	DisplayName string `json:"displayName"`
+}
+
 type Repository struct {
 	ID            string  `json:"id"`
 	URL           string  `json:"url"`
@@ -49,4 +55,10 @@ type Reviewer struct {
 	ReviewerURL string `json:"reviewerUrl"`
 	DisplayName string `json:"displayName"`
 	IsContainer bool   `json:"isContainer"`
+}
+
+type Request struct {
+	ID           int    `json:"id"`
+	URL          string `json:"url"`
+	RequestedFor User   `json:"requestedFor"`
 }
