@@ -1,7 +1,37 @@
 package docker
 
+// Docker hook types (only one for now).
+const BuildEvent Event = "build"
+
 // Event defines a Docker hook event type.
 type Event string
 
-// Docker hook types (only one for now).
-const BuildEvent Event = "build"
+// BuildPayload a docker hub build notice.
+//
+// https://docs.docker.com/docker-hub/webhooks/
+type BuildPayload struct {
+	CallbackURL string `json:"callback_url"`
+	PushData    struct {
+		Tag      string   `json:"tag"`
+		Pusher   string   `json:"pusher"`
+		Images   []string `json:"images"`
+		PushedAt float32  `json:"pushed_at"`
+	} `json:"push_data"`
+	Repository struct {
+		CommentCount    int     `json:"comment_count"`
+		StarCount       int     `json:"star_count"`
+		DateCreated     float32 `json:"date_created"`
+		FullDescription string  `json:"full_description"`
+		Description     string  `json:"description"`
+		Dockerfile      string  `json:"dockerfile"`
+		Namespace       string  `json:"namespace"`
+		RepoName        string  `json:"repo_name"`
+		RepoURL         string  `json:"repo_url"`
+		Status          string  `json:"status"`
+		Owner           string  `json:"owner"`
+		Name            string  `json:"name"`
+		IsOfficial      bool    `json:"is_official"`
+		IsPrivate       bool    `json:"is_private"`
+		IsTrusted       bool    `json:"is_trusted"`
+	} `json:"repository"`
+}
