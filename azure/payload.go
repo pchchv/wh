@@ -1,4 +1,3 @@
-// azure devops does not send an event header, this BasicEvent is provided to get the EventType
 package azure
 
 import (
