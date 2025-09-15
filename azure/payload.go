@@ -141,6 +141,27 @@ type Build struct {
 	LastChangedBy      User            `json:"lastChangedBy"`
 }
 
+type PullRequest struct {
+	PullRequestID         int        `json:"pullRequestId"`
+	URL                   string     `json:"url"`
+	Title                 string     `json:"title"`
+	MergeID               string     `json:"mergeId"`
+	Description           string     `json:"description"`
+	MergeStatus           string     `json:"mergeStatus"`
+	SourceRefName         string     `json:"sourceRefName"`
+	TargetRefName         string     `json:"targetRefName"`
+	Status                string     `json:"status"`
+	Commits               []Commit   `json:"commits"`
+	Reviewers             []Reviewer `json:"reviewers"`
+	CreatedBy             User       `json:"createdBy"`
+	ClosedDate            Date       `json:"closedDate"`
+	Repository            Repository `json:"repository"`
+	CreationDate          Date       `json:"creationDate"`
+	LastMergeCommit       Commit     `json:"lastMergeCommit"`
+	LastMergeSourceCommit Commit     `json:"lastMergeSourceCommit"`
+	LastMergeTargetCommit Commit     `json:"lastMergeTargetCommit"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
