@@ -184,6 +184,37 @@ type GitPushEvent struct {
 	Resource           Resource           `json:"resource"`
 }
 
+// git.pullrequest.*
+// git.pullrequest.merged
+// git.pullrequest.created
+// git.pullrequest.updated
+type GitPullRequestEvent struct {
+	ID                 string      `json:"id"`
+	Scope              string      `json:"scope"`
+	PublisherID        string      `json:"publisherId"`
+	ResourceVersion    string      `json:"resourceVersion"`
+	CreatedDate        Date        `json:"createdDate"`
+	EventType          Event       `json:"eventType"`
+	Message            Message     `json:"message"`
+	Resource           PullRequest `json:"resource"`
+	DetailedMessage    Message     `json:"detailedMessage"`
+	ResourceContainers interface{} `json:"resourceContainers"`
+}
+
+// build.complete
+type BuildCompleteEvent struct {
+	ID                 string      `json:"id"`
+	Scope              string      `json:"scope"`
+	PublisherID        string      `json:"publisherId"`
+	ResourceVersion    string      `json:"resourceVersion"`
+	CreatedDate        Date        `json:"createdDate"`
+	EventType          Event       `json:"eventType"`
+	Message            Message     `json:"message"`
+	Resource           Build       `json:"resource"`
+	DetailedMessage    Message     `json:"detailedMessage"`
+	ResourceContainers interface{} `json:"resourceContainers"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
