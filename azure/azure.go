@@ -18,8 +18,12 @@ const (
 	GitPullRequestUpdatedEventType Event = "git.pullrequest.updated"
 )
 
-// parse error
-var ErrParsingPayload = errors.New("error parsing payload")
+var (
+	// Parse error.
+	ErrParsingPayload = errors.New("error parsing payload")
+	// Options is a namespace var for configuration options.
+	Options = WebhookOptions{}
+)
 
 // Event defines an Azure DevOps server hook event type.
 type Event string
@@ -96,4 +100,16 @@ func New(options ...Option) (*Webhook, error) {
 		}
 	}
 	return hook, nil
+}
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
+
+// BasicAuth verifies payload using basic auth
+func (WebhookOptions) BasicAuth(username, password string) Option {
+	return func(hook *Webhook) error {
+		hook.username = username
+		hook.password = password
+		return nil
+	}
 }
