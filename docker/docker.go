@@ -35,3 +35,11 @@ type BuildPayload struct {
 		IsTrusted       bool    `json:"is_trusted"`
 	} `json:"repository"`
 }
+
+// Webhook instance contains all methods needed to process events.
+type Webhook struct{}
+
+// New creates and returns a WebHook instance.
+func New() (*Webhook, error) {
+	return new(Webhook), nil
+}
