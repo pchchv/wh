@@ -98,3 +98,18 @@ type Queue struct {
 	Name      string `json:"name"`
 	QueueType string `json:"queueType"`
 }
+
+type BuildDefinition struct {
+	ID             int    `json:"id"`
+	BatchSize      int    `json:"batchSize"`
+	DefinitionType string `json:"definitionType"`
+	TriggerType    string `json:"triggerType"`
+	Name           string `json:"name"`
+	URL            string `json:"url"`
+}
+
+type ResourceContainers struct {
+	Account    Account `json:"account"`
+	Project    Account `json:"project"`
+	Collection Account `json:"collection"`
+}
