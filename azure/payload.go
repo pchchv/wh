@@ -162,6 +162,28 @@ type PullRequest struct {
 	LastMergeTargetCommit Commit     `json:"lastMergeTargetCommit"`
 }
 
+type BasicEvent struct {
+	ID          string `json:"id"`
+	Scope       string `json:"scope"`
+	PublisherID string `json:"publisherId"`
+	CreatedDate Date   `json:"createdDate"`
+	EventType   Event  `json:"eventType"`
+}
+
+// git.push
+type GitPushEvent struct {
+	ID                 string             `json:"id"`
+	Scope              string             `json:"scope"`
+	EventType          string             `json:"eventType"`
+	CreatedDate        string             `json:"createdDate"`
+	PublisherID        string             `json:"publisherId"`
+	ResourceVersion    string             `json:"resourceVersion"`
+	Message            Message            `json:"message"`
+	DetailedMessage    Message            `json:"detailedMessage"`
+	ResourceContainers ResourceContainers `json:"resourceContainers"`
+	Resource           Resource           `json:"resource"`
+}
+
 type Date time.Time
 
 func (b Date) MarshalJSON() ([]byte, error) {
