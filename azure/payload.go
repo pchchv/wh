@@ -1,6 +1,8 @@
 // azure devops does not send an event header, this BasicEvent is provided to get the EventType
 package azure
 
+import "time"
+
 type User struct {
 	ID          string `json:"id"`
 	URL         string `json:"url"`
@@ -113,3 +115,5 @@ type ResourceContainers struct {
 	Project    Account `json:"project"`
 	Collection Account `json:"collection"`
 }
+
+type Date time.Time
