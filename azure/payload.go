@@ -78,3 +78,23 @@ type Resource struct {
 	Repository Repository  `json:"repository"`
 	RefUpdates []RefUpdate `json:"refUpdates"`
 }
+
+type Log struct {
+	URL         string `json:"url"`
+	Type        string `json:"type"`
+	DownloadURL string `json:"downloadUrl"`
+}
+
+type Drop struct {
+	URL         string `json:"url"`
+	Type        string `json:"type"`
+	Location    string `json:"location"`
+	DownloadURL string `json:"downloadUrl"`
+}
+
+type Queue struct {
+	ID        int    `json:"id"`
+	URL       string `json:"url"`
+	Name      string `json:"name"`
+	QueueType string `json:"queueType"`
+}
