@@ -1,7 +1,13 @@
 // azure devops does not send an event header, this BasicEvent is provided to get the EventType.
 package azure
 
-import "net/http"
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+)
 
 const (
 	// Azure DevOps Server hook types.
@@ -12,6 +18,9 @@ const (
 	GitPullRequestUpdatedEventType Event = "git.pullrequest.updated"
 )
 
+// parse error
+var ErrParsingPayload = errors.New("error parsing payload")
+
 // Event defines an Azure DevOps server hook event type.
 type Event string
 
@@ -19,6 +28,50 @@ type Event string
 type Webhook struct {
 	username string
 	password string
+}
+
+// Parse verifies and parses the events specified and returns the payload object or an error.
+func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error) {
+	defer func() {
+		_, _ = io.Copy(io.Discard, r.Body)
+		_ = r.Body.Close()
+	}()
+
+	if !hook.verifyBasicAuth(r) {
+		return nil, errors.New("basic auth verification failed")
+	}
+
+	if r.Method != http.MethodPost {
+		return nil, errors.New("invalid HTTP Method")
+	}
+
+	payload, err := io.ReadAll(r.Body)
+	if err != nil || len(payload) == 0 {
+		return nil, ErrParsingPayload
+	}
+
+	var pl BasicEvent
+	err = json.Unmarshal([]byte(payload), &pl)
+	if err != nil {
+		return nil, ErrParsingPayload
+	}
+
+	switch pl.EventType {
+	case GitPushEventType:
+		var fpl GitPushEvent
+		err = json.Unmarshal([]byte(payload), &fpl)
+		return fpl, err
+	case GitPullRequestCreatedEventType, GitPullRequestMergedEventType, GitPullRequestUpdatedEventType:
+		var fpl GitPullRequestEvent
+		err = json.Unmarshal([]byte(payload), &fpl)
+		return fpl, err
+	case BuildCompleteEventType:
+		var fpl BuildCompleteEvent
+		err = json.Unmarshal([]byte(payload), &fpl)
+		return fpl, err
+	default:
+		return nil, fmt.Errorf("unknown event %s", pl.EventType)
+	}
 }
 
 func (hook Webhook) verifyBasicAuth(r *http.Request) bool {
