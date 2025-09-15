@@ -1,7 +1,11 @@
 // azure devops does not send an event header, this BasicEvent is provided to get the EventType
 package azure
 
-import "time"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 type User struct {
 	ID          string `json:"id"`
@@ -117,3 +121,17 @@ type ResourceContainers struct {
 }
 
 type Date time.Time
+
+func (b Date) MarshalJSON() ([]byte, error) {
+	return []byte(fmt.Sprintf("\"%s\"", time.Time(b).Format(time.RFC3339Nano))), nil
+}
+
+func (b *Date) UnmarshalJSON(p []byte) error {
+	if t, err := time.Parse(time.RFC3339Nano, strings.Replace(string(p), "\"", "", -1)); err != nil {
+		return err
+	} else {
+		*b = Date(t)
+	}
+
+	return nil
+}
