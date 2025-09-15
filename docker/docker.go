@@ -1,7 +1,17 @@
 package docker
 
+import (
+	"encoding/json"
+	"errors"
+	"io"
+	"net/http"
+)
+
 // Docker hook types (only one for now).
 const BuildEvent Event = "build"
+
+// parse error
+var ErrParsingPayload = errors.New("error parsing payload")
 
 // Event defines a Docker hook event type.
 type Event string
@@ -42,4 +52,28 @@ type Webhook struct{}
 // New creates and returns a WebHook instance.
 func New() (*Webhook, error) {
 	return new(Webhook), nil
+}
+
+// Parse verifies and parses the events specified and returns the payload object or an error.
+func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error) {
+	defer func() {
+		_, _ = io.Copy(io.Discard, r.Body)
+		_ = r.Body.Close()
+	}()
+
+	if r.Method != http.MethodPost {
+		return nil, errors.New("invalid HTTP Method")
+	}
+
+	payload, err := io.ReadAll(r.Body)
+	if err != nil || len(payload) == 0 {
+		return nil, ErrParsingPayload
+	}
+
+	var pl BuildPayload
+	if err = json.Unmarshal([]byte(payload), &pl); err != nil {
+		return nil, ErrParsingPayload
+	}
+
+	return pl, nil
 }
