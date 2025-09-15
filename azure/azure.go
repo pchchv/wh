@@ -12,3 +12,9 @@ const (
 
 // Event defines an Azure DevOps server hook event type.
 type Event string
+
+// Webhook instance contains all methods needed to process events.
+type Webhook struct {
+	username string
+	password string
+}
