@@ -62,3 +62,19 @@ type Request struct {
 	URL          string `json:"url"`
 	RequestedFor User   `json:"requestedFor"`
 }
+
+type RefUpdate struct {
+	Name        string `json:"name"`
+	NewObjectID string `json:"newObjectId"`
+	OldObjectID string `json:"oldObjectId"`
+}
+
+type Resource struct {
+	PushID     int         `json:"pushId"`
+	URL        string      `json:"url"`
+	Date       string      `json:"date"`
+	Commits    []Commit    `json:"commits"`
+	PushedBy   PushedBy    `json:"pushedBy"`
+	Repository Repository  `json:"repository"`
+	RefUpdates []RefUpdate `json:"refUpdates"`
+}
