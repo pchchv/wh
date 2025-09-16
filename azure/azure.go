@@ -19,10 +19,11 @@ const (
 )
 
 var (
-	// Parse error.
-	ErrParsingPayload = errors.New("error parsing payload")
 	// Options is a namespace var for configuration options.
 	Options = WebhookOptions{}
+	// Parse errors.
+	ErrParsingPayload              = errors.New("error parsing payload")
+	ErrBasicAuthVerificationFailed = errors.New("basic auth verification failed")
 )
 
 // Event defines an Azure DevOps server hook event type.
@@ -42,7 +43,7 @@ func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error)
 	}()
 
 	if !hook.verifyBasicAuth(r) {
-		return nil, errors.New("basic auth verification failed")
+		return nil, ErrBasicAuthVerificationFailed
 	}
 
 	if r.Method != http.MethodPost {
