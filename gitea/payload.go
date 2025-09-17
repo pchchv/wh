@@ -148,6 +148,20 @@ type Repository struct {
 	Updated                   time.Time        `json:"updated_at"`
 }
 
+// Comment represents a comment on a commit or issue.
+type Comment struct {
+	ID               int64     `json:"id"`
+	OriginalAuthorID int64     `json:"original_author_id"`
+	OriginalAuthor   string    `json:"original_author"`
+	IssueURL         string    `json:"issue_url"`
+	HTMLURL          string    `json:"html_url"`
+	PRURL            string    `json:"pull_request_url"`
+	Body             string    `json:"body"`
+	Poster           *User     `json:"user"`
+	Created          time.Time `json:"created_at"`
+	Updated          time.Time `json:"updated_at"`
+}
+
 // InternalTracker represents settings for internal tracker.
 type InternalTracker struct {
 	EnableTimeTracker                bool `json:"enable_time_tracker"`
@@ -209,6 +223,15 @@ type PayloadCommitVerification struct {
 	Payload   string       `json:"payload"`
 	Signature string       `json:"signature"`
 	Signer    *PayloadUser `json:"signer"`
+}
+
+// PRBranchInfo information about a branch.
+type PRBranchInfo struct {
+	Sha        string      `json:"sha"`
+	Ref        string      `json:"ref"`
+	Name       string      `json:"label"`
+	RepoID     int64       `json:"repo_id"`
+	Repository *Repository `json:"repo"`
 }
 
 // ReviewPayload FIXME.
