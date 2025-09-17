@@ -136,3 +136,17 @@ func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error)
 		return nil, fmt.Errorf("unknown event %s", giteaEvent)
 	}
 }
+
+// Option is a configuration option for the webhook.
+type Option func(*Webhook) error
+
+// New creates and returns a WebHook instance denoted by the Provider type.
+func New(options ...Option) (*Webhook, error) {
+	hook := new(Webhook)
+	for _, opt := range options {
+		if err := opt(hook); err != nil {
+			return nil, errors.New("Error applying Option")
+		}
+	}
+	return hook, nil
+}
