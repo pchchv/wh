@@ -52,3 +52,19 @@ type ExternalTracker struct {
 type ExternalWiki struct {
 	ExternalWikiURL string `json:"external_wiki_url"`
 }
+
+// PayloadUser represents the author or committer of a commit.
+type PayloadUser struct {
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	UserName string `json:"username"`
+}
+
+// PayloadCommitVerification represents the GPG verification of a commit.
+type PayloadCommitVerification struct {
+	Verified  bool         `json:"verified"`
+	Reason    string       `json:"reason"`
+	Payload   string       `json:"payload"`
+	Signature string       `json:"signature"`
+	Signer    *PayloadUser `json:"signer"`
+}
