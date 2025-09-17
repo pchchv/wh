@@ -162,6 +162,68 @@ type Comment struct {
 	Updated          time.Time `json:"updated_at"`
 }
 
+// Release represents a repository release.
+type Release struct {
+	ID           int64         `json:"id"`
+	URL          string        `json:"url"`
+	Note         string        `json:"body"`
+	Title        string        `json:"name"`
+	ZipURL       string        `json:"zipball_url"`
+	TarURL       string        `json:"tarball_url"`
+	Target       string        `json:"target_commitish"`
+	HTMLURL      string        `json:"html_url"`
+	TagName      string        `json:"tag_name"`
+	IsDraft      bool          `json:"draft"`
+	IsPrerelease bool          `json:"prerelease"`
+	Attachments  []*Attachment `json:"assets"`
+	PublishedAt  time.Time     `json:"published_at"`
+	CreatedAt    time.Time     `json:"created_at"`
+	Publisher    *User         `json:"author"`
+}
+
+// Attachment a generic attachment.
+type Attachment struct {
+	ID            int64     `json:"id"`
+	Size          int64     `json:"size"`
+	DownloadCount int64     `json:"download_count"`
+	Name          string    `json:"name"`
+	UUID          string    `json:"uuid"`
+	DownloadURL   string    `json:"browser_download_url"`
+	Created       time.Time `json:"created_at"`
+}
+
+// PullRequest represents a pull request.
+type PullRequest struct {
+	ID             int64         `json:"id"`
+	Index          int64         `json:"number"`
+	Comments       int           `json:"comments"`
+	MergedCommitID *string       `json:"merge_commit_sha"`
+	MergeBase      string        `json:"merge_base"`
+	PatchURL       string        `json:"patch_url"`
+	DiffURL        string        `json:"diff_url"`
+	HTMLURL        string        `json:"html_url"`
+	Title          string        `json:"title"`
+	Body           string        `json:"body"`
+	URL            string        `json:"url"`
+	IsLocked       bool          `json:"is_locked"`
+	Mergeable      bool          `json:"mergeable"`
+	HasMerged      bool          `json:"merged"`
+	Deadline       *time.Time    `json:"due_date"`
+	Created        *time.Time    `json:"created_at"`
+	Updated        *time.Time    `json:"updated_at"`
+	Merged         *time.Time    `json:"merged_at"`
+	Closed         *time.Time    `json:"closed_at"`
+	Poster         *User         `json:"user"`
+	Assignee       *User         `json:"assignee"`
+	MergedBy       *User         `json:"merged_by"`
+	Assignees      []*User       `json:"assignees"`
+	Milestone      *Milestone    `json:"milestone"`
+	Labels         []*Label      `json:"labels"`
+	State          StateType     `json:"state"`
+	Base           *PRBranchInfo `json:"base"`
+	Head           *PRBranchInfo `json:"head"`
+}
+
 // InternalTracker represents settings for internal tracker.
 type InternalTracker struct {
 	EnableTimeTracker                bool `json:"enable_time_tracker"`
