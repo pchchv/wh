@@ -47,3 +47,8 @@ type ExternalTracker struct {
 	ExternalTrackerStyle  string `json:"external_tracker_style"`
 	ExternalTrackerFormat string `json:"external_tracker_format"`
 }
+
+// ExternalWiki represents setting for external wiki.
+type ExternalWiki struct {
+	ExternalWikiURL string `json:"external_wiki_url"`
+}
