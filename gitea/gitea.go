@@ -11,6 +11,9 @@ import (
 	"net/http"
 )
 
+// Options is a namespace var for configuration options.
+var Options = WebhookOptions{}
+
 const (
 	// Gitea hook types.
 	ForkEvent                 Event = "fork"
@@ -150,3 +153,6 @@ func New(options ...Option) (*Webhook, error) {
 	}
 	return hook, nil
 }
+
+// WebhookOptions is a namespace for configuration option methods.
+type WebhookOptions struct{}
