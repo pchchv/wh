@@ -73,6 +73,81 @@ type Milestone struct {
 	State        StateType  `json:"state"`
 }
 
+// Issue represents an issue in a repository.
+type Issue struct {
+	ID               int64            `json:"id"`
+	Index            int64            `json:"number"`
+	OriginalAuthorID int64            `json:"original_author_id"`
+	Comments         int              `json:"comments"`
+	Poster           *User            `json:"user"`
+	URL              string           `json:"url"`
+	Ref              string           `json:"ref"`
+	Body             string           `json:"body"`
+	Title            string           `json:"title"`
+	HTMLURL          string           `json:"html_url"`
+	OriginalAuthor   string           `json:"original_author"`
+	IsLocked         bool             `json:"is_locked"`
+	Labels           []*Label         `json:"labels"`
+	Assignees        []*User          `json:"assignees"`
+	Milestone        *Milestone       `json:"milestone"`
+	Assignee         *User            `json:"assignee"`
+	State            StateType        `json:"state"`
+	Created          time.Time        `json:"created_at"`
+	Updated          time.Time        `json:"updated_at"`
+	Closed           *time.Time       `json:"closed_at"`
+	Deadline         *time.Time       `json:"due_date"`
+	PullRequest      *PullRequestMeta `json:"pull_request"`
+	Repo             *RepositoryMeta  `json:"repository"`
+}
+
+// Repository represents a repository.
+type Repository struct {
+	ID                        int64            `json:"id"`
+	Size                      int              `json:"size"`
+	Stars                     int              `json:"stars_count"`
+	Forks                     int              `json:"forks_count"`
+	Watchers                  int              `json:"watchers_count"`
+	Releases                  int              `json:"release_counter"`
+	OpenPulls                 int              `json:"open_pr_counter"`
+	OpenIssues                int              `json:"open_issues_count"`
+	Owner                     *User            `json:"owner"`
+	Name                      string           `json:"name"`
+	FullName                  string           `json:"full_name"`
+	Description               string           `json:"description"`
+	IgnoreWhitespaceConflicts bool             `json:"ignore_whitespace_conflicts"`
+	AllowRebaseMerge          bool             `json:"allow_rebase_explicit"`
+	HasPullRequests           bool             `json:"has_pull_requests"`
+	AllowRebase               bool             `json:"allow_rebase"`
+	AllowSquash               bool             `json:"allow_squash_merge"`
+	HasProjects               bool             `json:"has_projects"`
+	AllowMerge                bool             `json:"allow_merge_commits"`
+	HasIssues                 bool             `json:"has_issues"`
+	Template                  bool             `json:"template"`
+	Archived                  bool             `json:"archived"`
+	Internal                  bool             `json:"internal"`
+	Private                   bool             `json:"private"`
+	HasWiki                   bool             `json:"has_wiki"`
+	Mirror                    bool             `json:"mirror"`
+	Empty                     bool             `json:"empty"`
+	Fork                      bool             `json:"fork"`
+	SSHURL                    string           `json:"ssh_url"`
+	Website                   string           `json:"website"`
+	HTMLURL                   string           `json:"html_url"`
+	CloneURL                  string           `json:"clone_url"`
+	AvatarURL                 string           `json:"avatar_url"`
+	OriginalURL               string           `json:"original_url"`
+	DefaultBranch             string           `json:"default_branch"`
+	MirrorInterval            string           `json:"mirror_interval"`
+	DefaultMergeStyle         string           `json:"default_merge_style"`
+	InternalTracker           *InternalTracker `json:"internal_tracker,omitempty"`
+	ExternalTracker           *ExternalTracker `json:"external_tracker,omitempty"`
+	ExternalWiki              *ExternalWiki    `json:"external_wiki,omitempty"`
+	Permissions               *Permission      `json:"permissions,omitempty"`
+	Parent                    *Repository      `json:"parent"`
+	Created                   time.Time        `json:"created_at"`
+	Updated                   time.Time        `json:"updated_at"`
+}
+
 // InternalTracker represents settings for internal tracker.
 type InternalTracker struct {
 	EnableTimeTracker                bool `json:"enable_time_tracker"`
