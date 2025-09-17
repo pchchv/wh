@@ -1,5 +1,7 @@
 package gitea
 
+import "time"
+
 // PusherType define the type to push.
 type PusherType string
 
@@ -51,6 +53,20 @@ type ExternalTracker struct {
 // ExternalWiki represents setting for external wiki.
 type ExternalWiki struct {
 	ExternalWikiURL string `json:"external_wiki_url"`
+}
+
+// RepositoryMeta basic repository information.
+type RepositoryMeta struct {
+	ID       int64  `json:"id"`
+	Name     string `json:"name"`
+	Owner    string `json:"owner"`
+	FullName string `json:"full_name"`
+}
+
+// PullRequestMeta PR info if an issue is a PR.
+type PullRequestMeta struct {
+	HasMerged bool       `json:"merged"`
+	Merged    *time.Time `json:"merged_at"`
 }
 
 // PayloadUser represents the author or committer of a commit.
