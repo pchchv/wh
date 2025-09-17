@@ -36,6 +36,43 @@ type Permission struct {
 	Admin bool `json:"admin"`
 }
 
+// User represents a user.
+type User struct {
+	ID            int64     `json:"id"`
+	Followers     int       `json:"followers_count"`
+	Following     int       `json:"following_count"`
+	StarredRepos  int       `json:"starred_repos_count"`
+	Description   string    `json:"description"`
+	Visibility    string    `json:"visibility"`
+	AvatarURL     string    `json:"avatar_url"`
+	UserName      string    `json:"login"`
+	FullName      string    `json:"full_name"`
+	Language      string    `json:"language"`
+	Location      string    `json:"location"`
+	Website       string    `json:"website"`
+	Email         string    `json:"email"`
+	IsAdmin       bool      `json:"is_admin"`
+	IsActive      bool      `json:"active"`
+	Restricted    bool      `json:"restricted"`
+	ProhibitLogin bool      `json:"prohibit_login"`
+	LastLogin     time.Time `json:"last_login,omitempty"`
+	Created       time.Time `json:"created,omitempty"`
+}
+
+// Milestone milestone is a collection of issues on one repository.
+type Milestone struct {
+	ID           int64      `json:"id"`
+	OpenIssues   int        `json:"open_issues"`
+	ClosedIssues int        `json:"closed_issues"`
+	Description  string     `json:"description"`
+	Title        string     `json:"title"`
+	Created      time.Time  `json:"created_at"`
+	Deadline     *time.Time `json:"due_on"`
+	Updated      *time.Time `json:"updated_at"`
+	Closed       *time.Time `json:"closed_at"`
+	State        StateType  `json:"state"`
+}
+
 // InternalTracker represents settings for internal tracker.
 type InternalTracker struct {
 	EnableTimeTracker                bool `json:"enable_time_tracker"`
