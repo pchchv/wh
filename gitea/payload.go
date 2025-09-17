@@ -76,6 +76,20 @@ type PayloadUser struct {
 	UserName string `json:"username"`
 }
 
+// PayloadCommit represents a commit.
+type PayloadCommit struct {
+	ID           string                     `json:"id"`
+	URL          string                     `json:"url"`
+	Message      string                     `json:"message"`
+	Modified     []string                   `json:"modified"`
+	Removed      []string                   `json:"removed"`
+	Added        []string                   `json:"added"`
+	Author       *PayloadUser               `json:"author"`
+	Committer    *PayloadUser               `json:"committer"`
+	Verification *PayloadCommitVerification `json:"verification"`
+	Timestamp    time.Time                  `json:"timestamp"`
+}
+
 // PayloadCommitVerification represents the GPG verification of a commit.
 type PayloadCommitVerification struct {
 	Verified  bool         `json:"verified"`
