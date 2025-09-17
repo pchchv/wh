@@ -1,6 +1,8 @@
 package gitea
 
 import (
+	"bytes"
+	"io"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -235,6 +237,79 @@ func TestWebhooks(t *testing.T) {
 			assert.Equal(http.StatusOK, resp.StatusCode)
 			assert.NoError(parseError)
 			assert.Equal(reflect.TypeOf(tc.typ), reflect.TypeOf(results))
+		})
+	}
+}
+
+func TestBadRequests(t *testing.T) {
+	assert := require.New(t)
+	tests := []struct {
+		name    string
+		event   Event
+		payload io.Reader
+		headers http.Header
+	}{
+		{
+			name:    "BadNoEventHeader",
+			event:   PushEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{},
+		},
+		{
+			name:    "UnsubscribedEvent",
+			event:   PushEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Gitea-Event": []string{"noneexistant_event"},
+			},
+		},
+		{
+			name:    "BadBody",
+			event:   PushEvent,
+			payload: bytes.NewBuffer([]byte("")),
+			headers: http.Header{
+				"X-Gitea-Event": []string{"push"},
+			},
+		},
+		{
+			name:    "BadSignatureLength",
+			event:   PushEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Gitea-Event":     []string{"push"},
+				"X-Gitea-Signature": []string{""},
+			},
+		},
+		{
+			name:    "BadSignatureMatch",
+			event:   PushEvent,
+			payload: bytes.NewBuffer([]byte("{}")),
+			headers: http.Header{
+				"X-Gitea-Event":     []string{"push"},
+				"X-Gitea-Signature": []string{"111"},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		tc := tt
+		client := &http.Client{}
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			var parseError error
+			server := newServer(func(w http.ResponseWriter, r *http.Request) {
+				_, parseError = hook.Parse(r, tc.event)
+			})
+			defer server.Close()
+			req, err := http.NewRequest(http.MethodPost, server.URL+path, tc.payload)
+			assert.NoError(err)
+			req.Header = tc.headers
+			req.Header.Set("Content-Type", "application/json")
+
+			resp, err := client.Do(req)
+			assert.NoError(err)
+			assert.Equal(http.StatusOK, resp.StatusCode)
+			assert.Error(parseError)
 		})
 	}
 }
