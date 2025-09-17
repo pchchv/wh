@@ -33,3 +33,17 @@ type Permission struct {
 	Push  bool `json:"push"`
 	Admin bool `json:"admin"`
 }
+
+// InternalTracker represents settings for internal tracker.
+type InternalTracker struct {
+	EnableTimeTracker                bool `json:"enable_time_tracker"`
+	EnableIssueDependencies          bool `json:"enable_issue_dependencies"`
+	AllowOnlyContributorsToTrackTime bool `json:"allow_only_contributors_to_track_time"`
+}
+
+// ExternalTracker represents settings for external tracker.
+type ExternalTracker struct {
+	ExternalTrackerURL    string `json:"external_tracker_url"`
+	ExternalTrackerStyle  string `json:"external_tracker_style"`
+	ExternalTrackerFormat string `json:"external_tracker_format"`
+}
