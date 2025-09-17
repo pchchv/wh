@@ -324,10 +324,29 @@ type IssuePayload struct {
 	Repository *Repository     `json:"repository"`
 }
 
+// IssueCommentPayload represents a payload information of issue comment event.
+type IssueCommentPayload struct {
+	Issue      *Issue                 `json:"issue"`
+	IsPull     bool                   `json:"is_pull"`
+	Sender     *User                  `json:"sender"`
+	Action     HookIssueCommentAction `json:"action"`
+	Changes    *ChangesPayload        `json:"changes,omitempty"`
+	Comment    *Comment               `json:"comment"`
+	Repository *Repository            `json:"repository"`
+}
+
 // ReleasePayload represents a payload information of release event.
 type ReleasePayload struct {
 	Sender     *User             `json:"sender"`
 	Action     HookReleaseAction `json:"action"`
 	Release    *Release          `json:"release"`
 	Repository *Repository       `json:"repository"`
+}
+
+// RepositoryPayload payload for repository webhooks.
+type RepositoryPayload struct {
+	Sender       *User          `json:"sender"`
+	Action       HookRepoAction `json:"action"`
+	Repository   *Repository    `json:"repository"`
+	Organization *User          `json:"organization"`
 }
