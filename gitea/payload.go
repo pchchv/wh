@@ -17,3 +17,19 @@ type HookReleaseAction string
 
 // HookIssueCommentAction defines hook issue comment action.
 type HookIssueCommentAction string
+
+// Label a label to an issue or a pr.
+type Label struct {
+	ID          int64  `json:"id"`
+	URL         string `json:"url"`
+	Name        string `json:"name"`
+	Color       string `json:"color"`
+	Description string `json:"description"`
+}
+
+// Permission represents a set of permissions.
+type Permission struct {
+	Pull  bool `json:"pull"`
+	Push  bool `json:"push"`
+	Admin bool `json:"admin"`
+}
