@@ -375,3 +375,27 @@ type DeletePayload struct {
 	Repo       *Repository `json:"repository"`
 	PusherType PusherType  `json:"pusher_type"`
 }
+
+// PushPayload represents a payload information of push event.
+type PushPayload struct {
+	Ref        string           `json:"ref"`
+	After      string           `json:"after"`
+	Before     string           `json:"before"`
+	CompareURL string           `json:"compare_url"`
+	HeadCommit *PayloadCommit   `json:"head_commit"`
+	Commits    []*PayloadCommit `json:"commits"`
+	Pusher     *User            `json:"pusher"`
+	Sender     *User            `json:"sender"`
+	Repo       *Repository      `json:"repository"`
+}
+
+// PullRequestPayload represents a payload information of pull request event.
+type PullRequestPayload struct {
+	Index       int64           `json:"number"`
+	Sender      *User           `json:"sender"`
+	Action      HookIssueAction `json:"action"`
+	Review      *ReviewPayload  `json:"review"`
+	Changes     *ChangesPayload `json:"changes,omitempty"`
+	Repository  *Repository     `json:"repository"`
+	PullRequest *PullRequest    `json:"pull_request"`
+}
