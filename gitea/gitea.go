@@ -1,5 +1,16 @@
 package gitea
 
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+)
+
 const (
 	// Gitea hook types.
 	ForkEvent                 Event = "fork"
@@ -28,4 +39,100 @@ type Event string
 // Webhook instance contains all methods needed to process events.
 type Webhook struct {
 	secret string
+}
+
+// Parse verifies and parses the events specified and returns the payload object or an error.
+func (hook Webhook) Parse(r *http.Request, events ...Event) (interface{}, error) {
+	defer func() {
+		_, _ = io.Copy(io.Discard, r.Body)
+		_ = r.Body.Close()
+	}()
+
+	if len(events) == 0 {
+		return nil, errors.New("no Event specified to parse")
+	}
+
+	if r.Method != http.MethodPost {
+		return nil, errors.New("invalid HTTP Method")
+	}
+
+	event := r.Header.Get("X-Gitea-Event")
+	if len(event) == 0 {
+		return nil, errors.New("missing X-Gitea-Event Header")
+	}
+
+	var found bool
+	giteaEvent := Event(event)
+	for _, evt := range events {
+		if evt == giteaEvent {
+			found = true
+			break
+		}
+	}
+
+	// event not defined to be parsed
+	if !found {
+		return nil, errors.New("event not defined to be parsed")
+	}
+
+	payload, err := io.ReadAll(r.Body)
+	if err != nil || len(payload) == 0 {
+		return nil, errors.New("error parsing payload")
+	}
+
+	// if Secret set exists, MAC must be checked
+	if len(hook.secret) > 0 {
+		signature := r.Header.Get("X-Gitea-Signature")
+		if len(signature) == 0 {
+			return nil, errors.New("missing X-Gitea-Signature Header")
+		}
+
+		sig256 := hmac.New(sha256.New, []byte(hook.secret))
+		_, _ = io.Writer(sig256).Write([]byte(payload))
+		expectedMAC := hex.EncodeToString(sig256.Sum(nil))
+		if !hmac.Equal([]byte(signature), []byte(expectedMAC)) {
+			return nil, errors.New("HMAC verification failed")
+		}
+	}
+
+	switch giteaEvent {
+	case CreateEvent:
+		var pl CreatePayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case DeleteEvent:
+		var pl DeletePayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case ForkEvent:
+		var pl ForkPayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case PushEvent:
+		var pl PushPayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case IssuesEvent, IssueAssignEvent, IssueLabelEvent, IssueMilestoneEvent:
+		var pl IssuePayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case IssueCommentEvent, PullRequestCommentEvent:
+		var pl IssueCommentPayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case PullRequestEvent, PullRequestAssignEvent, PullRequestLabelEvent, PullRequestMilestoneEvent, PullRequestReviewEvent, PullRequestSyncEvent:
+		var pl PullRequestPayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case RepositoryEvent:
+		var pl RepositoryPayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	case ReleaseEvent:
+		var pl ReleasePayload
+		err = json.Unmarshal([]byte(payload), &pl)
+		return pl, err
+	default:
+		return nil, fmt.Errorf("unknown event %s", giteaEvent)
+	}
 }
