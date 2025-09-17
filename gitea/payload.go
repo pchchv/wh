@@ -68,3 +68,21 @@ type PayloadCommitVerification struct {
 	Signature string       `json:"signature"`
 	Signer    *PayloadUser `json:"signer"`
 }
+
+// ReviewPayload FIXME.
+type ReviewPayload struct {
+	Type    string `json:"type"`
+	Content string `json:"content"`
+}
+
+// ChangesPayload represents the payload information of issue change.
+type ChangesPayload struct {
+	Ref   *ChangesFromPayload `json:"ref,omitempty"`
+	Body  *ChangesFromPayload `json:"body,omitempty"`
+	Title *ChangesFromPayload `json:"title,omitempty"`
+}
+
+// ChangesFromPayload FIXME.
+type ChangesFromPayload struct {
+	From string `json:"from"`
+}
