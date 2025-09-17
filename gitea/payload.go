@@ -313,3 +313,21 @@ type ChangesPayload struct {
 type ChangesFromPayload struct {
 	From string `json:"from"`
 }
+
+// IssuePayload represents the payload information that is sent along with an issue event.
+type IssuePayload struct {
+	Index      int64           `json:"number"`
+	Issue      *Issue          `json:"issue"`
+	Sender     *User           `json:"sender"`
+	Action     HookIssueAction `json:"action"`
+	Changes    *ChangesPayload `json:"changes,omitempty"`
+	Repository *Repository     `json:"repository"`
+}
+
+// ReleasePayload represents a payload information of release event.
+type ReleasePayload struct {
+	Sender     *User             `json:"sender"`
+	Action     HookReleaseAction `json:"action"`
+	Release    *Release          `json:"release"`
+	Repository *Repository       `json:"repository"`
+}
