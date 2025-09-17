@@ -350,3 +350,28 @@ type RepositoryPayload struct {
 	Repository   *Repository    `json:"repository"`
 	Organization *User          `json:"organization"`
 }
+
+// ForkPayload represents fork payload.
+type ForkPayload struct {
+	Repo   *Repository `json:"repository"`
+	Forkee *Repository `json:"forkee"`
+	Sender *User       `json:"sender"`
+}
+
+// CreatePayload represents a payload create reposoitory.
+type CreatePayload struct {
+	Sha     string      `json:"sha"`
+	Ref     string      `json:"ref"`
+	RefType string      `json:"ref_type"`
+	Sender  *User       `json:"sender"`
+	Repo    *Repository `json:"repository"`
+}
+
+// DeletePayload represents delete payload.
+type DeletePayload struct {
+	Ref        string      `json:"ref"`
+	RefType    string      `json:"ref_type"`
+	Sender     *User       `json:"sender"`
+	Repo       *Repository `json:"repository"`
+	PusherType PusherType  `json:"pusher_type"`
+}
