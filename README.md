@@ -1,6 +1,6 @@
-# wh [![Godoc Reference](https://pkg.go.dev/badge/github.com/pchchv/wh)](https://pkg.go.dev/github.com/pchchv/wh)
+# wh [![CI](https://github.com/pchchv/wh/workflows/CI/badge.svg)](https://github.com/pchchv/wh/actions?query=workflow%3ACI+event%3Apush) [![Godoc Reference](https://pkg.go.dev/badge/github.com/pchchv/wh)](https://pkg.go.dev/github.com/pchchv/wh) [![Go Report Card](https://goreportcard.com/badge/github.com/pchchv/wh)](https://goreportcard.com/report/github.com/pchchv/wh)
 
-The `wh` package allows for easy receiving and parsing of GitHub, Bitbucket, GitLab, Docker Hub, Gogs and Azure DevOps Webhook Events
+The `wh` package allows for easy receiving and parsing of GitHub, Bitbucket, GitLab, Docker Hub, Gogs and Azure DevOps Webhook Events.
 
 ## Features:
 
