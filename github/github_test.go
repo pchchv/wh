@@ -44,7 +44,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CheckRunEvent",
 			event:    CheckRunEvent,
 			typ:      CheckRunPayload{},
-			filename: "../testdata/github/check-run.json",
+			filename: "./testdata/check-run.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"check_run"},
 			},
@@ -53,7 +53,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CheckSuiteEvent",
 			event:    CheckSuiteEvent,
 			typ:      CheckSuitePayload{},
-			filename: "../testdata/github/check-suite.json",
+			filename: "./testdata/check-suite.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"check_suite"},
 			},
@@ -62,7 +62,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CommitCommentEvent",
 			event:    CommitCommentEvent,
 			typ:      CommitCommentPayload{},
-			filename: "../testdata/github/commit-comment.json",
+			filename: "./testdata/commit-comment.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"commit_comment"},
 			},
@@ -71,7 +71,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CreateEvent",
 			event:    CreateEvent,
 			typ:      CreatePayload{},
-			filename: "../testdata/github/create.json",
+			filename: "./testdata/create.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"create"},
 			},
@@ -80,7 +80,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DeleteEvent",
 			event:    DeleteEvent,
 			typ:      DeletePayload{},
-			filename: "../testdata/github/delete.json",
+			filename: "./testdata/delete.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"delete"},
 			},
@@ -89,7 +89,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DependabotAlertEvent",
 			event:    DependabotAlertEvent,
 			typ:      DependabotAlertPayload{},
-			filename: "../testdata/github/dependabot_alert.json",
+			filename: "./testdata/dependabot_alert.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"dependabot_alert"},
 			},
@@ -98,7 +98,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DeployKeyEvent",
 			event:    DeployKeyEvent,
 			typ:      DeployKeyPayload{},
-			filename: "../testdata/github/deploy_key.json",
+			filename: "./testdata/deploy_key.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"deploy_key"},
 			},
@@ -107,7 +107,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DeploymentEvent",
 			event:    DeploymentEvent,
 			typ:      DeploymentPayload{},
-			filename: "../testdata/github/deployment.json",
+			filename: "./testdata/deployment.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"deployment"},
 			},
@@ -116,7 +116,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DeploymentStatusEvent",
 			event:    DeploymentStatusEvent,
 			typ:      DeploymentStatusPayload{},
-			filename: "../testdata/github/deployment-status.json",
+			filename: "./testdata/deployment-status.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"deployment_status"},
 			},
@@ -125,7 +125,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ForkEvent",
 			event:    ForkEvent,
 			typ:      ForkPayload{},
-			filename: "../testdata/github/fork.json",
+			filename: "./testdata/fork.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"fork"},
 			},
@@ -134,7 +134,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "GollumEvent",
 			event:    GollumEvent,
 			typ:      GollumPayload{},
-			filename: "../testdata/github/gollum.json",
+			filename: "./testdata/gollum.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"gollum"},
 			},
@@ -143,7 +143,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "InstallationEvent",
 			event:    InstallationEvent,
 			typ:      InstallationPayload{},
-			filename: "../testdata/github/installation.json",
+			filename: "./testdata/installation.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"installation"},
 			},
@@ -152,7 +152,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "InstallationRepositoriesEvent",
 			event:    InstallationRepositoriesEvent,
 			typ:      InstallationRepositoriesPayload{},
-			filename: "../testdata/github/installation-repositories.json",
+			filename: "./testdata/installation-repositories.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"installation_repositories"},
 			},
@@ -161,7 +161,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IntegrationInstallationEvent",
 			event:    IntegrationInstallationEvent,
 			typ:      InstallationPayload{},
-			filename: "../testdata/github/integration-installation.json",
+			filename: "./testdata/integration-installation.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"integration_installation"},
 			},
@@ -170,7 +170,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IntegrationInstallationRepositoriesEvent",
 			event:    IntegrationInstallationRepositoriesEvent,
 			typ:      InstallationRepositoriesPayload{},
-			filename: "../testdata/github/integration-installation-repositories.json",
+			filename: "./testdata/integration-installation-repositories.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"integration_installation_repositories"},
 			},
@@ -179,7 +179,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueCommentEvent",
 			event:    IssueCommentEvent,
 			typ:      IssueCommentPayload{},
-			filename: "../testdata/github/issue-comment.json",
+			filename: "./testdata/issue-comment.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"issue_comment"},
 			},
@@ -188,7 +188,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestIssueCommentEvent",
 			event:    IssueCommentEvent,
 			typ:      IssueCommentPayload{},
-			filename: "../testdata/github/pull-request-issue-comment.json",
+			filename: "./testdata/pull-request-issue-comment.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"issue_comment"},
 			},
@@ -197,7 +197,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssuesEvent",
 			event:    IssuesEvent,
 			typ:      IssuesPayload{},
-			filename: "../testdata/github/issues.json",
+			filename: "./testdata/issues.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"issues"},
 			},
@@ -206,7 +206,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "LabelEvent",
 			event:    LabelEvent,
 			typ:      LabelPayload{},
-			filename: "../testdata/github/label.json",
+			filename: "./testdata/label.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"label"},
 			},
@@ -215,7 +215,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "MemberEvent",
 			event:    MemberEvent,
 			typ:      MemberPayload{},
-			filename: "../testdata/github/member.json",
+			filename: "./testdata/member.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"member"},
 			},
@@ -224,7 +224,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "MembershipEvent",
 			event:    MembershipEvent,
 			typ:      MembershipPayload{},
-			filename: "../testdata/github/membership.json",
+			filename: "./testdata/membership.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"membership"},
 			},
@@ -233,7 +233,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "MilestoneEvent",
 			event:    MilestoneEvent,
 			typ:      MilestonePayload{},
-			filename: "../testdata/github/milestone.json",
+			filename: "./testdata/milestone.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"milestone"},
 			},
@@ -242,7 +242,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "OrganizationEvent",
 			event:    OrganizationEvent,
 			typ:      OrganizationPayload{},
-			filename: "../testdata/github/organization.json",
+			filename: "./testdata/organization.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"organization"},
 			},
@@ -251,7 +251,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "OrgBlockEvent",
 			event:    OrgBlockEvent,
 			typ:      OrgBlockPayload{},
-			filename: "../testdata/github/org-block.json",
+			filename: "./testdata/org-block.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"org_block"},
 			},
@@ -260,7 +260,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PageBuildEvent",
 			event:    PageBuildEvent,
 			typ:      PageBuildPayload{},
-			filename: "../testdata/github/page-build.json",
+			filename: "./testdata/page-build.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"page_build"},
 			},
@@ -269,7 +269,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PingEvent",
 			event:    PingEvent,
 			typ:      PingPayload{},
-			filename: "../testdata/github/ping.json",
+			filename: "./testdata/ping.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"ping"},
 			},
@@ -278,7 +278,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ProjectCardEvent",
 			event:    ProjectCardEvent,
 			typ:      ProjectCardPayload{},
-			filename: "../testdata/github/project-card.json",
+			filename: "./testdata/project-card.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"project_card"},
 			},
@@ -287,7 +287,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ProjectColumnEvent",
 			event:    ProjectColumnEvent,
 			typ:      ProjectColumnPayload{},
-			filename: "../testdata/github/project-column.json",
+			filename: "./testdata/project-column.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"project_column"},
 			},
@@ -296,7 +296,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ProjectEvent",
 			event:    ProjectEvent,
 			typ:      ProjectPayload{},
-			filename: "../testdata/github/project.json",
+			filename: "./testdata/project.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"project"},
 			},
@@ -305,7 +305,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PublicEvent",
 			event:    PublicEvent,
 			typ:      PublicPayload{},
-			filename: "../testdata/github/public.json",
+			filename: "./testdata/public.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"public"},
 			},
@@ -314,7 +314,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestEvent",
 			event:    PullRequestEvent,
 			typ:      PullRequestPayload{},
-			filename: "../testdata/github/pull-request.json",
+			filename: "./testdata/pull-request.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"pull_request"},
 			},
@@ -323,7 +323,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestReviewEvent",
 			event:    PullRequestReviewEvent,
 			typ:      PullRequestReviewPayload{},
-			filename: "../testdata/github/pull-request-review.json",
+			filename: "./testdata/pull-request-review.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"pull_request_review"},
 			},
@@ -332,7 +332,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestReviewCommentEvent",
 			event:    PullRequestReviewCommentEvent,
 			typ:      PullRequestReviewCommentPayload{},
-			filename: "../testdata/github/pull-request-review-comment.json",
+			filename: "./testdata/pull-request-review-comment.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"pull_request_review_comment"},
 			},
@@ -341,7 +341,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PushEvent",
 			event:    PushEvent,
 			typ:      PushPayload{},
-			filename: "../testdata/github/push.json",
+			filename: "./testdata/push.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"push"},
 			},
@@ -350,7 +350,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ReleaseEvent",
 			event:    ReleaseEvent,
 			typ:      ReleasePayload{},
-			filename: "../testdata/github/release.json",
+			filename: "./testdata/release.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"release"},
 			},
@@ -359,7 +359,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepositoryEvent",
 			event:    RepositoryEvent,
 			typ:      RepositoryPayload{},
-			filename: "../testdata/github/repository.json",
+			filename: "./testdata/repository.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"repository"},
 			},
@@ -368,7 +368,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepositoryEditedEvent",
 			event:    RepositoryEvent,
 			typ:      RepositoryPayload{},
-			filename: "../testdata/github/repository-edited.json",
+			filename: "./testdata/repository-edited.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"repository"},
 			},
@@ -377,7 +377,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepositoryVulnerabilityAlertEvent",
 			event:    RepositoryVulnerabilityAlertEvent,
 			typ:      RepositoryVulnerabilityAlertPayload{},
-			filename: "../testdata/github/repository-vulnerability-alert.json",
+			filename: "./testdata/repository-vulnerability-alert.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"repository_vulnerability_alert"},
 			},
@@ -386,7 +386,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "SecurityAdvisoryEvent",
 			event:    SecurityAdvisoryEvent,
 			typ:      SecurityAdvisoryPayload{},
-			filename: "../testdata/github/security-advisory.json",
+			filename: "./testdata/security-advisory.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"security_advisory"},
 			},
@@ -395,7 +395,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "StatusEvent",
 			event:    StatusEvent,
 			typ:      StatusPayload{},
-			filename: "../testdata/github/status.json",
+			filename: "./testdata/status.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"status"},
 			},
@@ -404,7 +404,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "TeamEvent",
 			event:    TeamEvent,
 			typ:      TeamPayload{},
-			filename: "../testdata/github/team.json",
+			filename: "./testdata/team.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"team"},
 			},
@@ -413,7 +413,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "TeamAddEvent",
 			event:    TeamAddEvent,
 			typ:      TeamAddPayload{},
-			filename: "../testdata/github/team-add.json",
+			filename: "./testdata/team-add.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"team_add"},
 			},
@@ -422,7 +422,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "WatchEvent",
 			event:    WatchEvent,
 			typ:      WatchPayload{},
-			filename: "../testdata/github/watch.json",
+			filename: "./testdata/watch.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"watch"},
 			},
@@ -431,7 +431,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "WorkflowDispatchEvent",
 			event:    WorkflowDispatchEvent,
 			typ:      WorkflowDispatchPayload{},
-			filename: "../testdata/github/workflow_dispatch.json",
+			filename: "./testdata/workflow_dispatch.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"workflow_dispatch"},
 			},
@@ -440,7 +440,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "WorkflowJobEvent",
 			event:    WorkflowJobEvent,
 			typ:      WorkflowJobPayload{},
-			filename: "../testdata/github/workflow_job.json",
+			filename: "./testdata/workflow_job.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"workflow_job"},
 			},
@@ -449,7 +449,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "WorkflowRunEvent",
 			event:    WorkflowRunEvent,
 			typ:      WorkflowRunPayload{},
-			filename: "../testdata/github/workflow_run.json",
+			filename: "./testdata/workflow_run.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"workflow_run"},
 			},
@@ -458,7 +458,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "GitHubAppAuthorizationEvent",
 			event:    GitHubAppAuthorizationEvent,
 			typ:      GitHubAppAuthorizationPayload{},
-			filename: "../testdata/github/github-app-authorization.json",
+			filename: "./testdata/github-app-authorization.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"github_app_authorization"},
 			},
@@ -467,7 +467,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CodeScanningAlertEvent",
 			event:    CodeScanningAlertEvent,
 			typ:      CodeScanningAlertPayload{},
-			filename: "../testdata/github/code_scanning_alert.json",
+			filename: "./testdata/code_scanning_alert.json",
 			headers: http.Header{
 				"X-Github-Event": []string{"code_scanning_alert"},
 			},

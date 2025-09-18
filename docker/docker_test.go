@@ -40,7 +40,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "BuildEvent",
 			event:    BuildEvent,
 			typ:      BuildPayload{},
-			filename: "../testdata/docker/docker_hub_build_notice.json",
+			filename: "./testdata/docker_hub_build_notice.json",
 		},
 	}
 

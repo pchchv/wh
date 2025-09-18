@@ -117,7 +117,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "CreateEvent",
 			event:    CreateEvent,
 			typ:      client.CreatePayload{},
-			filename: "../testdata/gogs/create-event.json",
+			filename: "./testdata/create-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"create"},
@@ -128,7 +128,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "DeleteEvent",
 			event:    DeleteEvent,
 			typ:      client.DeletePayload{},
-			filename: "../testdata/gogs/delete-event.json",
+			filename: "./testdata/delete-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"delete"},
@@ -139,7 +139,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ForkEvent",
 			event:    ForkEvent,
 			typ:      client.ForkPayload{},
-			filename: "../testdata/gogs/fork-event.json",
+			filename: "./testdata/fork-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"fork"},
@@ -150,7 +150,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PushEvent",
 			event:    PushEvent,
 			typ:      client.PushPayload{},
-			filename: "../testdata/gogs/push-event.json",
+			filename: "./testdata/push-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"push"},
@@ -161,7 +161,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssuesEvent",
 			event:    IssuesEvent,
 			typ:      client.IssuesPayload{},
-			filename: "../testdata/gogs/issues-event.json",
+			filename: "./testdata/issues-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"issues"},
@@ -172,7 +172,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueCommentEvent",
 			event:    IssueCommentEvent,
 			typ:      client.IssueCommentPayload{},
-			filename: "../testdata/gogs/issue-comment-event.json",
+			filename: "./testdata/issue-comment-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"issue_comment"},
@@ -183,7 +183,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestEvent",
 			event:    PullRequestEvent,
 			typ:      client.PullRequestPayload{},
-			filename: "../testdata/gogs/pull-request-event.json",
+			filename: "./testdata/pull-request-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"pull_request"},
@@ -194,7 +194,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "ReleaseEvent",
 			event:    ReleaseEvent,
 			typ:      client.ReleasePayload{},
-			filename: "../testdata/gogs/release-event.json",
+			filename: "./testdata/release-event.json",
 			headers: http.Header{
 				"X-Gogs-Delivery":  []string{"f6266f16-1bf3-46a5-9ea4-602e06ead473"},
 				"X-Gogs-Event":     []string{"release"},

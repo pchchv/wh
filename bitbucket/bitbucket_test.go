@@ -118,7 +118,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoPush",
 			event:    RepoPushEvent,
 			typ:      RepoPushPayload{},
-			filename: "../testdata/bitbucket/repo-push.json",
+			filename: "./testdata/repo-push.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:push"},
@@ -128,7 +128,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoFork",
 			event:    RepoForkEvent,
 			typ:      RepoForkPayload{},
-			filename: "../testdata/bitbucket/repo-fork.json",
+			filename: "./testdata/repo-fork.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:fork"},
@@ -138,7 +138,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoUpdated",
 			event:    RepoUpdatedEvent,
 			typ:      RepoUpdatedPayload{},
-			filename: "../testdata/bitbucket/repo-updated.json",
+			filename: "./testdata/repo-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:updated"},
@@ -148,7 +148,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoCommitCommentCreated",
 			event:    RepoCommitCommentCreatedEvent,
 			typ:      RepoCommitCommentCreatedPayload{},
-			filename: "../testdata/bitbucket/commit-comment-created.json",
+			filename: "./testdata/commit-comment-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:commit_comment_created"},
@@ -158,7 +158,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoCommitStatusCreated",
 			event:    RepoCommitStatusCreatedEvent,
 			typ:      RepoCommitStatusCreatedPayload{},
-			filename: "../testdata/bitbucket/repo-commit-status-created.json",
+			filename: "./testdata/repo-commit-status-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:commit_status_created"},
@@ -168,7 +168,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "RepoCommitStatusUpdated",
 			event:    RepoCommitStatusUpdatedEvent,
 			typ:      RepoCommitStatusUpdatedPayload{},
-			filename: "../testdata/bitbucket/repo-commit-status-updated.json",
+			filename: "./testdata/repo-commit-status-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"repo:commit_status_updated"},
@@ -178,7 +178,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueCreated",
 			event:    IssueCreatedEvent,
 			typ:      IssueCreatedPayload{},
-			filename: "../testdata/bitbucket/issue-created.json",
+			filename: "./testdata/issue-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"issue:created"},
@@ -188,7 +188,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueUpdated",
 			event:    IssueUpdatedEvent,
 			typ:      IssueUpdatedPayload{},
-			filename: "../testdata/bitbucket/issue-updated.json",
+			filename: "./testdata/issue-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"issue:updated"},
@@ -198,7 +198,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueUpdated",
 			event:    IssueUpdatedEvent,
 			typ:      IssueUpdatedPayload{},
-			filename: "../testdata/bitbucket/issue-updated.json",
+			filename: "./testdata/issue-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"issue:updated"},
@@ -208,7 +208,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "IssueCommentCreated",
 			event:    IssueCommentCreatedEvent,
 			typ:      IssueCommentCreatedPayload{},
-			filename: "../testdata/bitbucket/issue-comment-created.json",
+			filename: "./testdata/issue-comment-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"issue:comment_created"},
@@ -218,7 +218,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestCreated",
 			event:    PullRequestCreatedEvent,
 			typ:      PullRequestCreatedPayload{},
-			filename: "../testdata/bitbucket/pull-request-created.json",
+			filename: "./testdata/pull-request-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:created"},
@@ -228,7 +228,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestUpdated",
 			event:    PullRequestUpdatedEvent,
 			typ:      PullRequestUpdatedPayload{},
-			filename: "../testdata/bitbucket/pull-request-updated.json",
+			filename: "./testdata/pull-request-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:updated"},
@@ -238,7 +238,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestApproved",
 			event:    PullRequestApprovedEvent,
 			typ:      PullRequestApprovedPayload{},
-			filename: "../testdata/bitbucket/pull-request-approved.json",
+			filename: "./testdata/pull-request-approved.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:approved"},
@@ -248,7 +248,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestApprovalRemoved",
 			event:    PullRequestUnapprovedEvent,
 			typ:      PullRequestUnapprovedPayload{},
-			filename: "../testdata/bitbucket/pull-request-approval-removed.json",
+			filename: "./testdata/pull-request-approval-removed.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:unapproved"},
@@ -258,7 +258,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestMerged",
 			event:    PullRequestMergedEvent,
 			typ:      PullRequestMergedPayload{},
-			filename: "../testdata/bitbucket/pull-request-merged.json",
+			filename: "./testdata/pull-request-merged.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:fulfilled"},
@@ -268,7 +268,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestDeclined",
 			event:    PullRequestDeclinedEvent,
 			typ:      PullRequestDeclinedPayload{},
-			filename: "../testdata/bitbucket/pull-request-declined.json",
+			filename: "./testdata/pull-request-declined.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:rejected"},
@@ -278,7 +278,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestCommentCreated",
 			event:    PullRequestCommentCreatedEvent,
 			typ:      PullRequestCommentCreatedPayload{},
-			filename: "../testdata/bitbucket/pull-request-comment-created.json",
+			filename: "./testdata/pull-request-comment-created.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:comment_created"},
@@ -288,7 +288,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestCommentUpdated",
 			event:    PullRequestCommentUpdatedEvent,
 			typ:      PullRequestCommentUpdatedPayload{},
-			filename: "../testdata/bitbucket/pull-request-comment-updated.json",
+			filename: "./testdata/pull-request-comment-updated.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:comment_updated"},
@@ -298,7 +298,7 @@ func TestWebhooks(t *testing.T) {
 			name:     "PullRequestCommentDeleted",
 			event:    PullRequestCommentDeletedEvent,
 			typ:      PullRequestCommentDeletedPayload{},
-			filename: "../testdata/bitbucket/pull-request-comment-deleted.json",
+			filename: "./testdata/pull-request-comment-deleted.json",
 			headers: http.Header{
 				"X-Hook-UUID": []string{"MY_UUID"},
 				"X-Event-Key": []string{"pullrequest:comment_deleted"},

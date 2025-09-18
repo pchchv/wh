@@ -43,31 +43,31 @@ func TestWebhooks(t *testing.T) {
 			name:     "build.complete",
 			event:    BuildCompleteEventType,
 			typ:      BuildCompleteEvent{},
-			filename: "../testdata/azuredevops/build.complete.json",
+			filename: "./testdata/build.complete.json",
 		},
 		{
 			name:     "git.pullrequest.created",
 			event:    GitPullRequestCreatedEventType,
 			typ:      GitPullRequestEvent{},
-			filename: "../testdata/azuredevops/git.pullrequest.created.json",
+			filename: "./testdata/git.pullrequest.created.json",
 		},
 		{
 			name:     "git.pullrequest.merged",
 			event:    GitPullRequestMergedEventType,
 			typ:      GitPullRequestEvent{},
-			filename: "../testdata/azuredevops/git.pullrequest.merged.json",
+			filename: "./testdata/git.pullrequest.merged.json",
 		},
 		{
 			name:     "git.pullrequest.updated",
 			event:    GitPullRequestUpdatedEventType,
 			typ:      GitPullRequestEvent{},
-			filename: "../testdata/azuredevops/git.pullrequest.updated.json",
+			filename: "./testdata/git.pullrequest.updated.json",
 		},
 		{
 			name:     "git.push",
 			event:    GitPushEventType,
 			typ:      GitPushEvent{},
-			filename: "../testdata/azuredevops/git.push.json",
+			filename: "./testdata/git.push.json",
 		},
 	}
 
